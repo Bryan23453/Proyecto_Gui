@@ -42,9 +42,16 @@ public class Loggin extends javax.swing.JFrame {
     private void initComponents() {
 
         Menu = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         Fondo5 = new javax.swing.JLabel();
         panel_ingreso = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
@@ -60,6 +67,22 @@ public class Loggin extends javax.swing.JFrame {
 
         Menu.setLayout(null);
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255,150));
+        jPanel5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(null);
+
+        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+        jPanel5.add(jToggleButton1);
+        jToggleButton1.setBounds(220, 170, 115, 27);
+
+        Menu.add(jPanel5);
+        jPanel5.setBounds(1230, 0, 1160, 580);
+
         jPanel2.setBackground(new java.awt.Color(102, 102, 102,150));
         jPanel2.setLayout(null);
         Menu.add(jPanel2);
@@ -67,13 +90,33 @@ public class Loggin extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(102, 102, 102,150));
         jPanel4.setLayout(null);
+
+        jLabel1.setText("Icono1");
+        jPanel4.add(jLabel1);
+        jLabel1.setBounds(20, 350, 60, 50);
+
+        jLabel3.setText("Icono1");
+        jPanel4.add(jLabel3);
+        jLabel3.setBounds(20, 10, 60, 50);
+
+        jLabel4.setText("Icono1");
+        jPanel4.add(jLabel4);
+        jLabel4.setBounds(20, 80, 60, 50);
+
+        jLabel5.setText("Icono1");
+        jPanel4.add(jLabel5);
+        jLabel5.setBounds(20, 150, 60, 50);
+
+        jLabel6.setText("Icono1");
+        jPanel4.add(jLabel6);
+        jLabel6.setBounds(20, 210, 60, 50);
+
+        jLabel7.setText("Icono1");
+        jPanel4.add(jLabel7);
+        jLabel7.setBounds(20, 280, 60, 50);
+
         Menu.add(jPanel4);
         jPanel4.setBounds(0, 0, 90, 650);
-
-        jPanel3.setBackground(new java.awt.Color(225, 225, 225,150));
-        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
-        Menu.add(jPanel3);
-        jPanel3.setBounds(90, 0, 1060, 580);
 
         Fondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/frame menu.png"))); // NOI18N
         Menu.add(Fondo5);
@@ -129,9 +172,13 @@ public class Loggin extends javax.swing.JFrame {
         Fondo2.setVisible(false);
         Fondo4.setVisible(true);
         panel_ingreso.setVisible(false);
-        Cambio_Ecena_Menu cmm = new Cambio_Ecena_Menu(Fondo4,Fondo5 ,Menu);
+        Cambio_Ecena_Menu cmm = new Cambio_Ecena_Menu(Fondo4,Fondo5 ,Menu,jPanel5);
         cmm.start();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        System.out.println("funciono");
+    }//GEN-LAST:event_jToggleButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -175,12 +222,19 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel Fondo5;
     private javax.swing.JPanel Menu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel panel_ingreso;
     // End of variables declaration//GEN-END:variables
 }

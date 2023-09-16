@@ -15,10 +15,12 @@ public class Cambio_Ecena_Menu  extends Thread  {
     JLabel fondo2;
     JLabel fondo3;
     JPanel panel;
-    public Cambio_Ecena_Menu(JLabel fondonim,JLabel fondoesta,JPanel menuu) {
+    JPanel pane2;
+    public Cambio_Ecena_Menu(JLabel fondonim,JLabel fondoesta,JPanel menuu, JPanel prueba) {
         fondo2=fondonim;
         fondo3=fondoesta;
         panel=menuu;
+        pane2=prueba;
     }
 
 	public void run () {
@@ -27,6 +29,12 @@ public class Cambio_Ecena_Menu  extends Thread  {
             fondo3.setVisible(true);
             panel.setVisible(true);
             fondo2.setVisible(false);
+            int w=1159;
+            while (w>90){
+                Thread.sleep(1);
+                pane2.setLocation(w,0);
+                w=w-3;
+            }
             
         } catch (InterruptedException ex) {
            
