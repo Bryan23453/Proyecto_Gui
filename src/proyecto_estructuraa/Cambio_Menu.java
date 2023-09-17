@@ -19,12 +19,14 @@ public class Cambio_Menu extends Thread {
     JPanel panel3;
     JPanel panel4;
     JPanel panel5;
-    public Cambio_Menu(JPanel pane,JPanel pane2,JPanel pane3,JPanel pane4,JPanel pane5){
+    JPanel panel6;
+    public Cambio_Menu(JPanel pane,JPanel pane2,JPanel pane3,JPanel pane4,JPanel pane5,JPanel pane6){
         panel=pane;
         panel2=pane2;
         panel3=pane3;
         panel4=pane4;
         panel5=pane5;
+        panel6=pane6;
     }
     
     public void run () {
@@ -33,6 +35,7 @@ public class Cambio_Menu extends Thread {
         panel3.setLocation(w, 0);
         panel4.setLocation(w, 0);
         panel5.setLocation(w, 0);
+        panel6.setLocation(w, 0);
             while (w>87){
             try {
                     Thread.sleep(1);
