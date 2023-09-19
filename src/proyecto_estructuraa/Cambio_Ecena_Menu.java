@@ -23,7 +23,7 @@ public class Cambio_Ecena_Menu  extends Thread  {
 
 	public void run () {
         try {
-            Thread.sleep(6670);
+            Thread.sleep(6700);
             //7010
             fondo3.setVisible(true);
             panel.setVisible(true);

@@ -44,6 +44,11 @@ public class Cambio_Menu extends Thread {
                 } catch (InterruptedException ex) {}
                 
             }
+            
+    }
+    
+    public boolean pasoo(){
+        return true;
     }
     
 }

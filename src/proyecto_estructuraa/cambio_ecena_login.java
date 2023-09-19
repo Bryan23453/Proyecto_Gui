@@ -27,7 +27,7 @@ public class cambio_ecena_login extends Thread  {
 
 	public void run () {
         try {
-            Thread.sleep(2980);
+            Thread.sleep(2700);
             //2880
             fondo2.setVisible(true);
             fondo3.setVisible(false);
