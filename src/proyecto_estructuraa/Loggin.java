@@ -44,6 +44,32 @@ public class Loggin extends javax.swing.JFrame {
     private void initComponents() {
 
         Menu_Customer = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
+        jSpinner1 = new javax.swing.JSpinner();
+        Comprar = new javax.swing.JLabel();
+        Eliminar_Producto = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        Label_IVA = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        Label_Total = new javax.swing.JLabel();
+        Label_Precio_CU = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        Label_Subtotal = new javax.swing.JLabel();
+        Label_Importe = new javax.swing.JLabel();
+        Agregar_Producto = new javax.swing.JLabel();
         Fondo6 = new javax.swing.JLabel();
         Menu_Admin = new javax.swing.JPanel();
         Panel_Informes = new javax.swing.JPanel();
@@ -150,6 +176,139 @@ public class Loggin extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         Menu_Customer.setLayout(null);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255,150));
+        jPanel2.setLayout(null);
+
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel32.setText("Producto:");
+        jPanel2.add(jLabel32);
+        jLabel32.setBounds(40, 30, 90, 30);
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBox4);
+        jComboBox4.setBounds(140, 30, 280, 40);
+
+        jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel33.setText("Cantidad:");
+        jPanel2.add(jLabel33);
+        jLabel33.setBounds(40, 110, 90, 25);
+
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel34.setText("Precio C/U:");
+        jPanel2.add(jLabel34);
+        jLabel34.setBounds(530, 20, 100, 25);
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel35.setText("Importe:");
+        jPanel2.add(jLabel35);
+        jLabel35.setBounds(530, 70, 90, 25);
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel36.setText("Lps.");
+        jPanel2.add(jLabel36);
+        jLabel36.setBounds(650, 20, 33, 25);
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel37.setText("Lps.");
+        jPanel2.add(jLabel37);
+        jLabel37.setBounds(620, 70, 40, 25);
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable7);
+
+        jPanel2.add(jScrollPane7);
+        jScrollPane7.setBounds(30, 170, 1110, 340);
+        jPanel2.add(jSpinner1);
+        jSpinner1.setBounds(150, 110, 68, 26);
+
+        Comprar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Comprar.setText("Icono Comprar");
+        jPanel2.add(Comprar);
+        Comprar.setBounds(80, 540, 150, 70);
+
+        Eliminar_Producto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Eliminar_Producto.setText("Icono Eliminar");
+        jPanel2.add(Eliminar_Producto);
+        Eliminar_Producto.setBounds(800, 80, 130, 70);
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel41.setText("Subtotal");
+        jPanel2.add(jLabel41);
+        jLabel41.setBounds(780, 520, 90, 25);
+
+        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel42.setText("IVA");
+        jPanel2.add(jLabel42);
+        jLabel42.setBounds(780, 560, 80, 25);
+
+        jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel43.setText("Total");
+        jPanel2.add(jLabel43);
+        jLabel43.setBounds(780, 600, 80, 25);
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel38.setText("Lps.");
+        jPanel2.add(jLabel38);
+        jLabel38.setBounds(970, 560, 50, 25);
+
+        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel44.setText("Lps.");
+        jPanel2.add(jLabel44);
+        jLabel44.setBounds(970, 600, 50, 25);
+
+        Label_IVA.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Label_IVA.setText("0");
+        jPanel2.add(Label_IVA);
+        Label_IVA.setBounds(1010, 560, 40, 25);
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel46.setText("Lps.");
+        jPanel2.add(jLabel46);
+        jLabel46.setBounds(970, 520, 50, 25);
+
+        Label_Total.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Label_Total.setText("0");
+        jPanel2.add(Label_Total);
+        Label_Total.setBounds(1010, 600, 40, 25);
+
+        Label_Precio_CU.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Label_Precio_CU.setText("0");
+        jPanel2.add(Label_Precio_CU);
+        Label_Precio_CU.setBounds(690, 20, 40, 25);
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel49.setText("Lps.");
+        jPanel2.add(jLabel49);
+        jLabel49.setBounds(970, 520, 50, 25);
+
+        Label_Subtotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Label_Subtotal.setText("0");
+        jPanel2.add(Label_Subtotal);
+        Label_Subtotal.setBounds(1010, 520, 40, 25);
+
+        Label_Importe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Label_Importe.setText("0");
+        jPanel2.add(Label_Importe);
+        Label_Importe.setBounds(660, 70, 40, 25);
+
+        Agregar_Producto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Agregar_Producto.setText("Icono Agrega");
+        jPanel2.add(Agregar_Producto);
+        Agregar_Producto.setBounds(800, 10, 120, 70);
+
+        Menu_Customer.add(jPanel2);
+        jPanel2.setBounds(0, 0, 1150, 650);
 
         Fondo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/frame menu.png"))); // NOI18N
         Menu_Customer.add(Fondo6);
@@ -803,8 +962,11 @@ public class Loggin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Agregar_Producto;
     private javax.swing.JButton Boton_Ingreso;
+    private javax.swing.JLabel Comprar;
     private javax.swing.JTextField Contra;
+    private javax.swing.JLabel Eliminar_Producto;
     private javax.swing.JLabel Fondo2;
     private javax.swing.JLabel Fondo3;
     private javax.swing.JLabel Fondo4;
@@ -814,7 +976,12 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel Icono_Factura;
     private javax.swing.JLabel Icono_Producto;
     private javax.swing.JLabel Icono_Vendedor;
+    private javax.swing.JLabel Label_IVA;
+    private javax.swing.JLabel Label_Importe;
     private javax.swing.JLabel Label_Incorrecto;
+    private javax.swing.JLabel Label_Precio_CU;
+    private javax.swing.JLabel Label_Subtotal;
+    private javax.swing.JLabel Label_Total;
     private javax.swing.JPanel Menu_Admin;
     private javax.swing.JPanel Menu_Customer;
     private javax.swing.JPanel Panel_Cliente;
@@ -840,6 +1007,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -866,25 +1034,42 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
