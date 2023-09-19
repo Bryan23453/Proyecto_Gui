@@ -106,14 +106,6 @@ public class Loggin extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        Panel_menu_abajo = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        Panel_Menu_Izquierda = new javax.swing.JPanel();
-        Tienda_Icono = new javax.swing.JLabel();
-        Icono_Producto = new javax.swing.JLabel();
-        Icono_Vendedor = new javax.swing.JLabel();
-        Icono_Factura = new javax.swing.JLabel();
-        Icono_Cliente = new javax.swing.JLabel();
         Panel_Cliente = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -127,7 +119,17 @@ public class Loggin extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
+        Panel_menu_abajo = new javax.swing.JPanel();
+        Panel_Menu_Izquierda = new javax.swing.JPanel();
+        Tienda_Icono = new javax.swing.JLabel();
+        Icono_Producto = new javax.swing.JLabel();
+        Icono_Vendedor = new javax.swing.JLabel();
+        Icono_Factura = new javax.swing.JLabel();
+        Icono_Cliente = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
         Fondo5 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         panel_ingreso = new javax.swing.JPanel();
         Usuario = new javax.swing.JTextField();
         Contra = new javax.swing.JTextField();
@@ -145,6 +147,7 @@ public class Loggin extends javax.swing.JFrame {
         Menu.setLayout(null);
 
         Panel_Informes.setBackground(new java.awt.Color(255, 255, 255,150));
+        Panel_Informes.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Informes.setLayout(null);
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -173,10 +176,11 @@ public class Loggin extends javax.swing.JFrame {
         jScrollPane6.setBounds(30, 110, 960, 430);
 
         Menu.add(Panel_Informes);
-        Panel_Informes.setBounds(1220, 0, 1060, 580);
+        Panel_Informes.setBounds(1220, 0, 1080, 610);
 
         Panel_Tienda.setBackground(new java.awt.Color(255, 255, 255,150));
         Panel_Tienda.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Tienda.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Tienda.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -240,10 +244,11 @@ public class Loggin extends javax.swing.JFrame {
         jToggleButton3.setBounds(60, 300, 150, 40);
 
         Menu.add(Panel_Tienda);
-        Panel_Tienda.setBounds(1230, 0, 1060, 580);
+        Panel_Tienda.setBounds(1230, 0, 1080, 610);
 
         Panel_Productos.setBackground(new java.awt.Color(255, 255, 255,150));
         Panel_Productos.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Productos.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Productos.setLayout(null);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -317,10 +322,11 @@ public class Loggin extends javax.swing.JFrame {
         jButton4.setBounds(110, 450, 170, 40);
 
         Menu.add(Panel_Productos);
-        Panel_Productos.setBounds(1230, 0, 1060, 580);
+        Panel_Productos.setBounds(1230, 0, 1080, 610);
 
         Panel_Vendedores.setBackground(new java.awt.Color(255, 255, 255,150));
         Panel_Vendedores.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Vendedores.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Vendedores.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -375,10 +381,11 @@ public class Loggin extends javax.swing.JFrame {
         jScrollPane2.setBounds(340, 100, 680, 440);
 
         Menu.add(Panel_Vendedores);
-        Panel_Vendedores.setBounds(1230, 0, 1060, 580);
+        Panel_Vendedores.setBounds(1230, 0, 1080, 610);
 
         Panel_Factura.setBackground(new java.awt.Color(255, 255, 255,150));
         Panel_Factura.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Factura.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Factura.setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -466,76 +473,11 @@ public class Loggin extends javax.swing.JFrame {
         jScrollPane3.setBounds(280, 90, 710, 460);
 
         Menu.add(Panel_Factura);
-        Panel_Factura.setBounds(1230, 0, 1060, 580);
-
-        Panel_menu_abajo.setBackground(new java.awt.Color(102, 102, 102,150));
-        Panel_menu_abajo.setLayout(null);
-
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Informe.png"))); // NOI18N
-        jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel29MouseClicked(evt);
-            }
-        });
-        Panel_menu_abajo.add(jLabel29);
-        jLabel29.setBounds(30, 0, 50, 60);
-
-        Menu.add(Panel_menu_abajo);
-        Panel_menu_abajo.setBounds(90, 580, 1060, 70);
-
-        Panel_Menu_Izquierda.setBackground(new java.awt.Color(102, 102, 102,150));
-        Panel_Menu_Izquierda.setLayout(null);
-
-        Tienda_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Tienda.png"))); // NOI18N
-        Tienda_Icono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tienda_IconoMouseClicked(evt);
-            }
-        });
-        Panel_Menu_Izquierda.add(Tienda_Icono);
-        Tienda_Icono.setBounds(10, 20, 60, 60);
-
-        Icono_Producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Producto.png"))); // NOI18N
-        Icono_Producto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Icono_ProductoMouseClicked(evt);
-            }
-        });
-        Panel_Menu_Izquierda.add(Icono_Producto);
-        Icono_Producto.setBounds(10, 130, 70, 70);
-
-        Icono_Vendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Vendedor.png"))); // NOI18N
-        Icono_Vendedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Icono_VendedorMouseClicked(evt);
-            }
-        });
-        Panel_Menu_Izquierda.add(Icono_Vendedor);
-        Icono_Vendedor.setBounds(10, 250, 60, 60);
-
-        Icono_Factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Factura.png"))); // NOI18N
-        Icono_Factura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Icono_FacturaMouseClicked(evt);
-            }
-        });
-        Panel_Menu_Izquierda.add(Icono_Factura);
-        Icono_Factura.setBounds(10, 360, 60, 70);
-
-        Icono_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Cliente.png"))); // NOI18N
-        Icono_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Icono_ClienteMouseClicked(evt);
-            }
-        });
-        Panel_Menu_Izquierda.add(Icono_Cliente);
-        Icono_Cliente.setBounds(10, 470, 60, 70);
-
-        Menu.add(Panel_Menu_Izquierda);
-        Panel_Menu_Izquierda.setBounds(0, 0, 90, 650);
+        Panel_Factura.setBounds(1230, 0, 1080, 610);
 
         Panel_Cliente.setBackground(new java.awt.Color(255, 255, 255,150));
         Panel_Cliente.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Cliente.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Cliente.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
@@ -599,11 +541,103 @@ public class Loggin extends javax.swing.JFrame {
         jScrollPane4.setBounds(330, 90, 670, 450);
 
         Menu.add(Panel_Cliente);
-        Panel_Cliente.setBounds(1230, 0, 1060, 580);
+        Panel_Cliente.setBounds(1230, 0, 1080, 610);
+
+        Panel_menu_abajo.setBackground(new java.awt.Color(67, 122, 227));
+        Panel_menu_abajo.setLayout(null);
+        Menu.add(Panel_menu_abajo);
+        Panel_menu_abajo.setBounds(80, 610, 1080, 40);
+
+        Panel_Menu_Izquierda.setBackground(new java.awt.Color(67, 122, 227));
+
+        Tienda_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Tienda.png"))); // NOI18N
+        Tienda_Icono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tienda_IconoMouseClicked(evt);
+            }
+        });
+
+        Icono_Producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Producto.png"))); // NOI18N
+        Icono_Producto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icono_ProductoMouseClicked(evt);
+            }
+        });
+
+        Icono_Vendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Vendedor.png"))); // NOI18N
+        Icono_Vendedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icono_VendedorMouseClicked(evt);
+            }
+        });
+
+        Icono_Factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Factura.png"))); // NOI18N
+        Icono_Factura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icono_FacturaMouseClicked(evt);
+            }
+        });
+
+        Icono_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Cliente.png"))); // NOI18N
+        Icono_Cliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Icono_ClienteMouseClicked(evt);
+            }
+        });
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Informe.png"))); // NOI18N
+        jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel29MouseClicked(evt);
+            }
+        });
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Vendedor.png"))); // NOI18N
+
+        javax.swing.GroupLayout Panel_Menu_IzquierdaLayout = new javax.swing.GroupLayout(Panel_Menu_Izquierda);
+        Panel_Menu_Izquierda.setLayout(Panel_Menu_IzquierdaLayout);
+        Panel_Menu_IzquierdaLayout.setHorizontalGroup(
+            Panel_Menu_IzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Menu_IzquierdaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Panel_Menu_IzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel29)
+                    .addComponent(Icono_Cliente)
+                    .addComponent(Icono_Factura)
+                    .addComponent(Icono_Vendedor)
+                    .addComponent(Icono_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Tienda_Icono))
+                .addContainerGap())
+        );
+        Panel_Menu_IzquierdaLayout.setVerticalGroup(
+            Panel_Menu_IzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_Menu_IzquierdaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Tienda_Icono)
+                .addGap(18, 18, 18)
+                .addComponent(Icono_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Icono_Vendedor)
+                .addGap(18, 18, 18)
+                .addComponent(Icono_Factura, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Icono_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+
+        Menu.add(Panel_Menu_Izquierda);
+        Panel_Menu_Izquierda.setBounds(0, 0, 80, 650);
 
         Fondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/frame menu.png"))); // NOI18N
         Menu.add(Fondo5);
         Fondo5.setBounds(0, 0, 1160, 650);
+        Menu.add(jPanel1);
+        jPanel1.setBounds(80, 0, 100, 100);
 
         getContentPane().add(Menu);
         Menu.setBounds(0, 0, 2300, 650);
@@ -666,32 +700,39 @@ public class Loggin extends javax.swing.JFrame {
 
     private void Tienda_IconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tienda_IconoMouseClicked
 
-        Cambio_Menu CM= new Cambio_Menu(Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor);
         CM.start();
+
     }//GEN-LAST:event_Tienda_IconoMouseClicked
 
     private void Icono_ProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_ProductoMouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Productos,Panel_Tienda,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes);
-        CM.start();
+        if (Icono_Producto.isEnabled()) {
+            Cambio_Menu CM= new Cambio_Menu(Panel_Productos,Panel_Tienda,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor);
+            CM.start();
+        }
+        
     }//GEN-LAST:event_Icono_ProductoMouseClicked
 
     private void Icono_VendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_VendedorMouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Vendedores,Panel_Tienda,Panel_Productos,Panel_Factura,Panel_Cliente,Panel_Informes);
-        CM.start();
+        if (Icono_Vendedor.isEnabled()) {
+            Cambio_Menu CM= new Cambio_Menu(Panel_Vendedores,Panel_Tienda,Panel_Productos,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor);
+            CM.start();
+        }
+        
     }//GEN-LAST:event_Icono_VendedorMouseClicked
 
     private void Icono_FacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_FacturaMouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Factura,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Informes);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Factura,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Informes,Icono_Vendedor);
         CM.start();
     }//GEN-LAST:event_Icono_FacturaMouseClicked
 
     private void Icono_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_ClienteMouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Informes);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Informes,Icono_Vendedor);
         CM.start();
     }//GEN-LAST:event_Icono_ClienteMouseClicked
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Informes,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Informes,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Icono_Vendedor);
         CM.start();
     }//GEN-LAST:event_jLabel29MouseClicked
 
@@ -790,12 +831,14 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

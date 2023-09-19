@@ -4,8 +4,10 @@
  */
 package proyecto_estructuraa;
 
+import java.awt.Label;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -20,23 +22,28 @@ public class Cambio_Menu extends Thread {
     JPanel panel4;
     JPanel panel5;
     JPanel panel6;
-    public Cambio_Menu(JPanel pane,JPanel pane2,JPanel pane3,JPanel pane4,JPanel pane5,JPanel pane6){
+    JLabel a;
+    boolean pass=false;
+    public Cambio_Menu(JPanel pane,JPanel pane2,JPanel pane3,JPanel pane4,JPanel pane5,JPanel pane6,JLabel a){
         panel=pane;
         panel2=pane2;
         panel3=pane3;
         panel4=pane4;
         panel5=pane5;
         panel6=pane6;
+        this.a=a;
+        
     }
     
     public void run () {
+        a.setEnabled(false);
         int w=1230;
         panel2.setLocation(w, 0);
         panel3.setLocation(w, 0);
         panel4.setLocation(w, 0);
         panel5.setLocation(w, 0);
         panel6.setLocation(w, 0);
-            while (w>87){
+            while (w>80){
             try {
                     Thread.sleep(1);
                     panel.setLocation(w,0);
@@ -44,11 +51,18 @@ public class Cambio_Menu extends Thread {
                 } catch (InterruptedException ex) {}
                 
             }
+            a.setEnabled(true);
+            a.repaint();
             
     }
     
     public boolean pasoo(){
-        return true;
+        if (pass) {
+            return true;
+        }else{
+            return false;
+        }
+        
     }
     
 }
