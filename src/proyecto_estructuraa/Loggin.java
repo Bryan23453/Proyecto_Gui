@@ -24,7 +24,9 @@ public class Loggin extends javax.swing.JFrame {
         Fondo2.setVisible(false); 
         Fondo4.setVisible(false);
         Fondo5.setVisible(false);
-        Menu.setVisible(false);
+        Menu_Admin.setVisible(false);
+        Menu_Customer.setVisible(false);
+        Label_Incorrecto.setVisible(false);
         panel_ingreso.setVisible(false);
         cambio_ecena_login cm = new cambio_ecena_login(Fondo2,Fondo3 ,panel_ingreso);
         cm.start();
@@ -41,7 +43,9 @@ public class Loggin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Menu = new javax.swing.JPanel();
+        Menu_Customer = new javax.swing.JPanel();
+        Fondo6 = new javax.swing.JLabel();
+        Menu_Admin = new javax.swing.JPanel();
         Panel_Informes = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
@@ -134,9 +138,10 @@ public class Loggin extends javax.swing.JFrame {
         Usuario = new javax.swing.JTextField();
         Contra = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Boton_Ingreso = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        Label_Incorrecto = new javax.swing.JLabel();
         Fondo2 = new javax.swing.JLabel();
         Fondo4 = new javax.swing.JLabel();
         Fondo3 = new javax.swing.JLabel();
@@ -144,7 +149,16 @@ public class Loggin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        Menu.setLayout(null);
+        Menu_Customer.setLayout(null);
+
+        Fondo6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/frame menu.png"))); // NOI18N
+        Menu_Customer.add(Fondo6);
+        Fondo6.setBounds(0, 0, 1152, 650);
+
+        getContentPane().add(Menu_Customer);
+        Menu_Customer.setBounds(0, 0, 2300, 650);
+
+        Menu_Admin.setLayout(null);
 
         Panel_Informes.setBackground(new java.awt.Color(255, 255, 255,150));
         Panel_Informes.setPreferredSize(new java.awt.Dimension(1070, 610));
@@ -175,7 +189,7 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Informes.add(jScrollPane6);
         jScrollPane6.setBounds(30, 110, 960, 430);
 
-        Menu.add(Panel_Informes);
+        Menu_Admin.add(Panel_Informes);
         Panel_Informes.setBounds(1220, 0, 1080, 610);
 
         Panel_Tienda.setBackground(new java.awt.Color(255, 255, 255,150));
@@ -243,7 +257,7 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Tienda.add(jToggleButton3);
         jToggleButton3.setBounds(60, 300, 150, 40);
 
-        Menu.add(Panel_Tienda);
+        Menu_Admin.add(Panel_Tienda);
         Panel_Tienda.setBounds(1230, 0, 1080, 610);
 
         Panel_Productos.setBackground(new java.awt.Color(255, 255, 255,150));
@@ -321,7 +335,7 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Productos.add(jButton4);
         jButton4.setBounds(110, 450, 170, 40);
 
-        Menu.add(Panel_Productos);
+        Menu_Admin.add(Panel_Productos);
         Panel_Productos.setBounds(1230, 0, 1080, 610);
 
         Panel_Vendedores.setBackground(new java.awt.Color(255, 255, 255,150));
@@ -380,7 +394,7 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Vendedores.add(jScrollPane2);
         jScrollPane2.setBounds(340, 100, 680, 440);
 
-        Menu.add(Panel_Vendedores);
+        Menu_Admin.add(Panel_Vendedores);
         Panel_Vendedores.setBounds(1230, 0, 1080, 610);
 
         Panel_Factura.setBackground(new java.awt.Color(255, 255, 255,150));
@@ -472,7 +486,7 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Factura.add(jScrollPane3);
         jScrollPane3.setBounds(280, 90, 710, 460);
 
-        Menu.add(Panel_Factura);
+        Menu_Admin.add(Panel_Factura);
         Panel_Factura.setBounds(1230, 0, 1080, 610);
 
         Panel_Cliente.setBackground(new java.awt.Color(255, 255, 255,150));
@@ -540,12 +554,12 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Cliente.add(jScrollPane4);
         jScrollPane4.setBounds(330, 90, 670, 450);
 
-        Menu.add(Panel_Cliente);
+        Menu_Admin.add(Panel_Cliente);
         Panel_Cliente.setBounds(1230, 0, 1080, 610);
 
         Panel_menu_abajo.setBackground(new java.awt.Color(67, 122, 227));
         Panel_menu_abajo.setLayout(null);
-        Menu.add(Panel_menu_abajo);
+        Menu_Admin.add(Panel_menu_abajo);
         Panel_menu_abajo.setBounds(80, 610, 1080, 40);
 
         Panel_Menu_Izquierda.setBackground(new java.awt.Color(67, 122, 227));
@@ -630,17 +644,17 @@ public class Loggin extends javax.swing.JFrame {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        Menu.add(Panel_Menu_Izquierda);
+        Menu_Admin.add(Panel_Menu_Izquierda);
         Panel_Menu_Izquierda.setBounds(0, 0, 80, 650);
 
         Fondo5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/frame menu.png"))); // NOI18N
-        Menu.add(Fondo5);
+        Menu_Admin.add(Fondo5);
         Fondo5.setBounds(0, 0, 1160, 650);
-        Menu.add(jPanel1);
+        Menu_Admin.add(jPanel1);
         jPanel1.setBounds(80, 0, 100, 100);
 
-        getContentPane().add(Menu);
-        Menu.setBounds(0, 0, 2300, 650);
+        getContentPane().add(Menu_Admin);
+        Menu_Admin.setBounds(0, 0, 2300, 650);
 
         panel_ingreso.setBackground(new java.awt.Color(255, 255, 255));
         panel_ingreso.setLayout(null);
@@ -653,14 +667,14 @@ public class Loggin extends javax.swing.JFrame {
         panel_ingreso.add(jLabel2);
         jLabel2.setBounds(70, 10, 250, 310);
 
-        jButton1.setText("Ingresar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Boton_Ingreso.setText("Ingresar");
+        Boton_Ingreso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                Boton_IngresoMouseClicked(evt);
             }
         });
-        panel_ingreso.add(jButton1);
-        jButton1.setBounds(150, 500, 120, 50);
+        panel_ingreso.add(Boton_Ingreso);
+        Boton_Ingreso.setBounds(150, 520, 120, 50);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Usuario");
@@ -671,6 +685,12 @@ public class Loggin extends javax.swing.JFrame {
         jLabel8.setText("Contraseña");
         panel_ingreso.add(jLabel8);
         jLabel8.setBounds(60, 410, 100, 25);
+
+        Label_Incorrecto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Label_Incorrecto.setForeground(new java.awt.Color(255, 0, 51));
+        Label_Incorrecto.setText("Usuario o Contraseña Incorrectos");
+        panel_ingreso.add(Label_Incorrecto);
+        Label_Incorrecto.setBounds(20, 480, 320, 25);
 
         getContentPane().add(panel_ingreso);
         panel_ingreso.setBounds(380, 30, 420, 580);
@@ -689,14 +709,25 @@ public class Loggin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        Fondo2.setVisible(false);
-        Fondo4.setVisible(true);
-        panel_ingreso.setVisible(false);
-        Cambio_Ecena_Menu cmm = new Cambio_Ecena_Menu(Fondo4,Fondo5 ,Menu);
-        cmm.start();
-    }//GEN-LAST:event_jButton1MouseClicked
+    String variableprovisionalusuarioadmin="admin",variableprovisionalcontraadmin="admin",variableprovisionalusuariocustomer="paco",variableprovisionalcontrcustomer="123";
+    private void Boton_IngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_IngresoMouseClicked
+        if (Usuario.getText().equals(variableprovisionalusuarioadmin) && Contra.getText().equals(variableprovisionalcontraadmin)) {
+            Fondo2.setVisible(false);
+            Fondo4.setVisible(true);
+            panel_ingreso.setVisible(false);
+            Cambio_Ecena_Menu cmm = new Cambio_Ecena_Menu(Fondo4,Fondo5 ,Menu_Admin);
+            cmm.start();
+        }else if (Usuario.getText().equals(variableprovisionalusuariocustomer) && Contra.getText().equals(variableprovisionalcontrcustomer)) {
+            Fondo2.setVisible(false);
+            Fondo4.setVisible(true);
+            panel_ingreso.setVisible(false);
+            Cambio_Ecena_Menu cmm = new Cambio_Ecena_Menu(Fondo4,Fondo5 ,Menu_Customer);
+            cmm.start();
+        }else{
+            Label_Incorrecto.setVisible(true);
+        }
+        
+    }//GEN-LAST:event_Boton_IngresoMouseClicked
 
     private void Tienda_IconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tienda_IconoMouseClicked
 
@@ -772,16 +803,20 @@ public class Loggin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Boton_Ingreso;
     private javax.swing.JTextField Contra;
     private javax.swing.JLabel Fondo2;
     private javax.swing.JLabel Fondo3;
     private javax.swing.JLabel Fondo4;
     private javax.swing.JLabel Fondo5;
+    private javax.swing.JLabel Fondo6;
     private javax.swing.JLabel Icono_Cliente;
     private javax.swing.JLabel Icono_Factura;
     private javax.swing.JLabel Icono_Producto;
     private javax.swing.JLabel Icono_Vendedor;
-    private javax.swing.JPanel Menu;
+    private javax.swing.JLabel Label_Incorrecto;
+    private javax.swing.JPanel Menu_Admin;
+    private javax.swing.JPanel Menu_Customer;
     private javax.swing.JPanel Panel_Cliente;
     private javax.swing.JPanel Panel_Factura;
     private javax.swing.JPanel Panel_Informes;
@@ -792,7 +827,6 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_menu_abajo;
     private javax.swing.JLabel Tienda_Icono;
     private javax.swing.JTextField Usuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
