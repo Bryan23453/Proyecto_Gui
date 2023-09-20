@@ -1106,7 +1106,7 @@ public class Loggin extends javax.swing.JFrame {
     String variableprovisionalusuarioadmin="admin",variableprovisionalcontraadmin="admin",variableprovisionalusuariocustomer="paco",variableprovisionalcontrcustomer="123";
     private void Boton_IngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_IngresoMouseClicked
         if (Usuario.getText().equals(variableprovisionalusuarioadmin) && Contra.getText().equals(variableprovisionalcontraadmin)) {
-            //ConexionDB c = new ConexionDB();
+            ConexionDB c = new ConexionDB();
             Fondo_Login.setVisible(false);
             Fondo4.setVisible(true);
             panel_ingreso.setVisible(false);
