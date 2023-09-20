@@ -61,6 +61,31 @@ public class Loggin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         Label_Incorrecto = new javax.swing.JLabel();
         Menu_Admin = new javax.swing.JPanel();
+        Panel_Factura = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
+        jToggleButton6 = new javax.swing.JToggleButton();
+        Panel_Bitacora = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         Panel_Tienda = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
@@ -107,24 +132,6 @@ public class Loggin extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        Panel_Factura = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         Panel_Cliente = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -269,6 +276,150 @@ public class Loggin extends javax.swing.JFrame {
 
         Menu_Admin.setLayout(null);
 
+        Panel_Factura.setBackground(new java.awt.Color(0, 0, 0,150));
+        Panel_Factura.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Factura.setPreferredSize(new java.awt.Dimension(1070, 610));
+        Panel_Factura.setLayout(null);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel4.setText("Facturas");
+        Panel_Factura.add(jLabel4);
+        jLabel4.setBounds(470, 0, 270, 70);
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel14.setText("Fecha");
+        Panel_Factura.add(jLabel14);
+        jLabel14.setBounds(30, 90, 100, 30);
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel17.setText("ID Tienda");
+        Panel_Factura.add(jLabel17);
+        jLabel17.setBounds(30, 440, 100, 30);
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel18.setText("Subtotal");
+        Panel_Factura.add(jLabel18);
+        jLabel18.setBounds(30, 230, 100, 30);
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel19.setText("Total");
+        Panel_Factura.add(jLabel19);
+        jLabel19.setBounds(30, 300, 100, 30);
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel20.setText("ISV");
+        Panel_Factura.add(jLabel20);
+        jLabel20.setBounds(30, 160, 100, 30);
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel21.setText("ID Cliente");
+        Panel_Factura.add(jLabel21);
+        jLabel21.setBounds(30, 370, 100, 30);
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel22.setText("Numero");
+        Panel_Factura.add(jLabel22);
+        jLabel22.setBounds(30, 20, 100, 30);
+
+        jTextField7.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField7.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField7.setText("jTextField7");
+        Panel_Factura.add(jTextField7);
+        jTextField7.setBounds(30, 50, 190, 30);
+
+        jFormattedTextField1.setText("jFormattedTextField1");
+        Panel_Factura.add(jFormattedTextField1);
+        jFormattedTextField1.setBounds(30, 120, 190, 30);
+
+        jTextField8.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField8.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField8.setText("jTextField8");
+        Panel_Factura.add(jTextField8);
+        jTextField8.setBounds(30, 190, 190, 30);
+
+        jTextField9.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField9.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField9.setText("jTextField9");
+        Panel_Factura.add(jTextField9);
+        jTextField9.setBounds(30, 260, 190, 30);
+
+        jTextField10.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField10.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField10.setText("jTextField10");
+        Panel_Factura.add(jTextField10);
+        jTextField10.setBounds(30, 330, 190, 30);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Panel_Factura.add(jComboBox1);
+        jComboBox1.setBounds(30, 400, 190, 30);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Panel_Factura.add(jComboBox2);
+        jComboBox2.setBounds(30, 470, 190, 30);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        Panel_Factura.add(jScrollPane3);
+        jScrollPane3.setBounds(280, 90, 710, 460);
+
+        jToggleButton4.setBackground(new java.awt.Color(204, 204, 204));
+        jToggleButton4.setForeground(new java.awt.Color(0, 0, 0));
+        jToggleButton4.setText("Agregar");
+        Panel_Factura.add(jToggleButton4);
+        jToggleButton4.setBounds(20, 520, 76, 27);
+
+        jToggleButton5.setBackground(new java.awt.Color(204, 204, 204));
+        jToggleButton5.setForeground(new java.awt.Color(0, 0, 0));
+        jToggleButton5.setText("Eliminar");
+        Panel_Factura.add(jToggleButton5);
+        jToggleButton5.setBounds(20, 560, 77, 27);
+
+        jToggleButton6.setBackground(new java.awt.Color(204, 204, 204));
+        jToggleButton6.setForeground(new java.awt.Color(0, 0, 0));
+        jToggleButton6.setText("Modificar");
+        Panel_Factura.add(jToggleButton6);
+        jToggleButton6.setBounds(150, 540, 85, 27);
+
+        Menu_Admin.add(Panel_Factura);
+        Panel_Factura.setBounds(1230, 0, 1080, 610);
+
+        Panel_Bitacora.setBackground(new java.awt.Color(255, 255, 255,150));
+        Panel_Bitacora.setLayout(null);
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel48.setText("Bitacora");
+        Panel_Bitacora.add(jLabel48);
+        jLabel48.setBounds(480, 0, 150, 50);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane8.setViewportView(jTextArea1);
+
+        Panel_Bitacora.add(jScrollPane8);
+        jScrollPane8.setBounds(50, 70, 1000, 510);
+
+        Menu_Admin.add(Panel_Bitacora);
+        Panel_Bitacora.setBounds(1230, 0, 1080, 610);
+
         Panel_Tienda.setBackground(new java.awt.Color(0, 0, 0,150));
         Panel_Tienda.setForeground(new java.awt.Color(255, 255, 255));
         Panel_Tienda.setPreferredSize(new java.awt.Dimension(1070, 610));
@@ -399,15 +550,17 @@ public class Loggin extends javax.swing.JFrame {
         Menu_Admin.add(Panel_Tienda);
         Panel_Tienda.setBounds(1230, 0, 1080, 610);
 
-        Panel_Informes.setBackground(new java.awt.Color(255, 255, 255,150));
+        Panel_Informes.setBackground(new java.awt.Color(0, 0, 0,150));
         Panel_Informes.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Informes.setLayout(null);
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(137, 250, 230));
         jLabel30.setText("Informes");
         Panel_Informes.add(jLabel30);
         jLabel30.setBounds(470, 0, 170, 60);
 
+        jComboBox3.setForeground(new java.awt.Color(102, 102, 102));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Panel_Informes.add(jComboBox3);
         jComboBox3.setBounds(460, 60, 170, 40);
@@ -431,49 +584,69 @@ public class Loggin extends javax.swing.JFrame {
         Menu_Admin.add(Panel_Informes);
         Panel_Informes.setBounds(1220, 0, 1080, 610);
 
-        Panel_Productos.setBackground(new java.awt.Color(255, 255, 255,150));
+        Panel_Productos.setBackground(new java.awt.Color(0, 0, 0,150));
         Panel_Productos.setForeground(new java.awt.Color(255, 255, 255));
         Panel_Productos.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Productos.setLayout(null);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(137, 250, 230));
         jLabel6.setText("Productos");
         Panel_Productos.add(jLabel6);
         jLabel6.setBounds(500, 10, 270, 70);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(137, 250, 230));
         jLabel9.setText("UPC");
         Panel_Productos.add(jLabel9);
         jLabel9.setBounds(70, 40, 37, 20);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(137, 250, 230));
         jLabel10.setText("Nombre");
         Panel_Productos.add(jLabel10);
         jLabel10.setBounds(70, 110, 80, 20);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(137, 250, 230));
         jLabel11.setText("Tamaño");
         Panel_Productos.add(jLabel11);
         jLabel11.setBounds(70, 180, 80, 20);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(137, 250, 230));
         jLabel12.setText("Embalaje");
         Panel_Productos.add(jLabel12);
         jLabel12.setBounds(70, 320, 80, 30);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(137, 250, 230));
         jLabel13.setText("Marca");
         Panel_Productos.add(jLabel13);
         jLabel13.setBounds(70, 250, 80, 20);
+
+        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
         Panel_Productos.add(jTextField1);
         jTextField1.setBounds(70, 270, 220, 30);
+
+        jTextField2.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
         Panel_Productos.add(jTextField2);
         jTextField2.setBounds(70, 60, 220, 30);
+
+        jTextField3.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField3.setForeground(new java.awt.Color(102, 102, 102));
         Panel_Productos.add(jTextField3);
         jTextField3.setBounds(70, 130, 220, 30);
+
+        jTextField4.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField4.setForeground(new java.awt.Color(102, 102, 102));
         Panel_Productos.add(jTextField4);
         jTextField4.setBounds(70, 200, 220, 30);
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Eliminar");
         Panel_Productos.add(jButton2);
         jButton2.setBounds(110, 510, 170, 40);
@@ -498,10 +671,14 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Productos.add(jScrollPane1);
         jScrollPane1.setBounds(350, 100, 670, 450);
 
+        jButton3.setBackground(new java.awt.Color(204, 204, 204));
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Agregar");
         Panel_Productos.add(jButton3);
         jButton3.setBounds(110, 390, 170, 40);
 
+        jButton4.setBackground(new java.awt.Color(204, 204, 204));
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Editar");
         Panel_Productos.add(jButton4);
         jButton4.setBounds(110, 450, 170, 40);
@@ -509,42 +686,55 @@ public class Loggin extends javax.swing.JFrame {
         Menu_Admin.add(Panel_Productos);
         Panel_Productos.setBounds(1230, 0, 1080, 610);
 
-        Panel_Vendedores.setBackground(new java.awt.Color(255, 255, 255,150));
+        Panel_Vendedores.setBackground(new java.awt.Color(0, 0, 0,150));
         Panel_Vendedores.setForeground(new java.awt.Color(255, 255, 255));
         Panel_Vendedores.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Vendedores.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(137, 250, 230));
         jLabel5.setText("Vendedores");
         Panel_Vendedores.add(jLabel5);
         jLabel5.setBounds(400, 0, 270, 70);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(137, 250, 230));
         jLabel15.setText("ID");
         Panel_Vendedores.add(jLabel15);
         jLabel15.setBounds(40, 120, 130, 25);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(137, 250, 230));
         jLabel16.setText("Nombre");
         Panel_Vendedores.add(jLabel16);
         jLabel16.setBounds(40, 200, 130, 25);
 
+        jTextField5.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField5.setForeground(new java.awt.Color(102, 102, 102));
         jTextField5.setText("jTextField5");
         Panel_Vendedores.add(jTextField5);
         jTextField5.setBounds(40, 230, 260, 30);
 
+        jTextField6.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField6.setForeground(new java.awt.Color(102, 102, 102));
         jTextField6.setText("jTextField5");
         Panel_Vendedores.add(jTextField6);
         jTextField6.setBounds(40, 150, 260, 30);
 
+        jButton5.setBackground(new java.awt.Color(204, 204, 204));
+        jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Modificar");
         Panel_Vendedores.add(jButton5);
         jButton5.setBounds(110, 380, 120, 40);
 
+        jButton6.setBackground(new java.awt.Color(204, 204, 204));
+        jButton6.setForeground(new java.awt.Color(0, 0, 0));
         jButton6.setText("Eliminar");
         Panel_Vendedores.add(jButton6);
         jButton6.setBounds(110, 450, 120, 40);
 
+        jButton7.setBackground(new java.awt.Color(204, 204, 204));
+        jButton7.setForeground(new java.awt.Color(0, 0, 0));
         jButton7.setText("Añadir");
         Panel_Vendedores.add(jButton7);
         jButton7.setBounds(110, 310, 120, 40);
@@ -568,143 +758,67 @@ public class Loggin extends javax.swing.JFrame {
         Menu_Admin.add(Panel_Vendedores);
         Panel_Vendedores.setBounds(1230, 0, 1080, 610);
 
-        Panel_Factura.setBackground(new java.awt.Color(255, 255, 255,150));
-        Panel_Factura.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Factura.setPreferredSize(new java.awt.Dimension(1070, 610));
-        Panel_Factura.setLayout(null);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel4.setText("Facturas");
-        Panel_Factura.add(jLabel4);
-        jLabel4.setBounds(470, 0, 270, 70);
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setText("Fecha");
-        Panel_Factura.add(jLabel14);
-        jLabel14.setBounds(30, 90, 100, 30);
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel17.setText("ID Tienda");
-        Panel_Factura.add(jLabel17);
-        jLabel17.setBounds(30, 440, 100, 30);
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel18.setText("Subtotal");
-        Panel_Factura.add(jLabel18);
-        jLabel18.setBounds(30, 230, 100, 30);
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel19.setText("Total");
-        Panel_Factura.add(jLabel19);
-        jLabel19.setBounds(30, 300, 100, 30);
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel20.setText("ISV");
-        Panel_Factura.add(jLabel20);
-        jLabel20.setBounds(30, 160, 100, 30);
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel21.setText("ID Cliente");
-        Panel_Factura.add(jLabel21);
-        jLabel21.setBounds(30, 370, 100, 30);
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel22.setText("Numero");
-        Panel_Factura.add(jLabel22);
-        jLabel22.setBounds(30, 20, 100, 30);
-
-        jTextField7.setText("jTextField7");
-        Panel_Factura.add(jTextField7);
-        jTextField7.setBounds(30, 50, 190, 30);
-
-        jFormattedTextField1.setText("jFormattedTextField1");
-        Panel_Factura.add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(30, 120, 190, 30);
-
-        jTextField8.setText("jTextField8");
-        Panel_Factura.add(jTextField8);
-        jTextField8.setBounds(30, 190, 190, 30);
-
-        jTextField9.setText("jTextField9");
-        Panel_Factura.add(jTextField9);
-        jTextField9.setBounds(30, 260, 190, 30);
-
-        jTextField10.setText("jTextField10");
-        Panel_Factura.add(jTextField10);
-        jTextField10.setBounds(30, 330, 190, 30);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Panel_Factura.add(jComboBox1);
-        jComboBox1.setBounds(30, 400, 190, 30);
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Panel_Factura.add(jComboBox2);
-        jComboBox2.setBounds(30, 470, 190, 30);
-
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable3);
-
-        Panel_Factura.add(jScrollPane3);
-        jScrollPane3.setBounds(280, 90, 710, 460);
-
-        Menu_Admin.add(Panel_Factura);
-        Panel_Factura.setBounds(1230, 0, 1080, 610);
-
-        Panel_Cliente.setBackground(new java.awt.Color(255, 255, 255,150));
+        Panel_Cliente.setBackground(new java.awt.Color(0, 0, 0,150));
         Panel_Cliente.setForeground(new java.awt.Color(255, 255, 255));
         Panel_Cliente.setPreferredSize(new java.awt.Dimension(1070, 610));
         Panel_Cliente.setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(137, 250, 230));
         jLabel3.setText("Clientes");
         Panel_Cliente.add(jLabel3);
         jLabel3.setBounds(420, 10, 270, 70);
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(137, 250, 230));
         jLabel23.setText("Nombre");
         Panel_Cliente.add(jLabel23);
         jLabel23.setBounds(50, 130, 110, 30);
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(137, 250, 230));
         jLabel24.setText("Correo");
         Panel_Cliente.add(jLabel24);
         jLabel24.setBounds(50, 210, 60, 30);
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(137, 250, 230));
         jLabel25.setText("ID");
         Panel_Cliente.add(jLabel25);
         jLabel25.setBounds(50, 50, 60, 30);
 
+        jTextField11.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField11.setForeground(new java.awt.Color(102, 102, 102));
         jTextField11.setText("jTextField11");
         Panel_Cliente.add(jTextField11);
         jTextField11.setBounds(50, 80, 210, 30);
 
+        jTextField12.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField12.setForeground(new java.awt.Color(102, 102, 102));
         jTextField12.setText("jTextField12");
         Panel_Cliente.add(jTextField12);
         jTextField12.setBounds(50, 160, 210, 30);
 
+        jTextField13.setBackground(new java.awt.Color(102, 102, 102));
+        jTextField13.setForeground(new java.awt.Color(102, 102, 102));
         jTextField13.setText("jTextField13");
         Panel_Cliente.add(jTextField13);
         jTextField13.setBounds(50, 240, 210, 30);
 
+        jButton8.setBackground(new java.awt.Color(204, 204, 204));
+        jButton8.setForeground(new java.awt.Color(0, 0, 0));
         jButton8.setText("Eliminar");
         Panel_Cliente.add(jButton8);
         jButton8.setBounds(60, 450, 160, 40);
 
+        jButton9.setBackground(new java.awt.Color(204, 204, 204));
+        jButton9.setForeground(new java.awt.Color(0, 0, 0));
         jButton9.setText("Añadir");
         Panel_Cliente.add(jButton9);
         jButton9.setBounds(60, 310, 160, 40);
 
+        jButton10.setBackground(new java.awt.Color(204, 204, 204));
+        jButton10.setForeground(new java.awt.Color(0, 0, 0));
         jButton10.setText("Modificar");
         Panel_Cliente.add(jButton10);
         jButton10.setBounds(60, 380, 160, 40);
@@ -777,7 +891,13 @@ public class Loggin extends javax.swing.JFrame {
             }
         });
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Vendedor.png"))); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel31.setText("Icono Bitacora");
+        jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel31MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout Panel_Menu_IzquierdaLayout = new javax.swing.GroupLayout(Panel_Menu_Izquierda);
         Panel_Menu_Izquierda.setLayout(Panel_Menu_IzquierdaLayout);
@@ -1003,14 +1123,14 @@ public class Loggin extends javax.swing.JFrame {
 
     private void Tienda_IconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tienda_IconoMouseClicked
 
-        Cambio_Menu CM= new Cambio_Menu(Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor,Panel_Bitacora);
         CM.start();
 
     }//GEN-LAST:event_Tienda_IconoMouseClicked
 
     private void Icono_ProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_ProductoMouseClicked
         if (Icono_Producto.isEnabled()) {
-            Cambio_Menu CM= new Cambio_Menu(Panel_Productos,Panel_Tienda,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor);
+            Cambio_Menu CM= new Cambio_Menu(Panel_Productos,Panel_Tienda,Panel_Vendedores,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor,Panel_Bitacora);
             CM.start();
         }
         
@@ -1018,24 +1138,24 @@ public class Loggin extends javax.swing.JFrame {
 
     private void Icono_VendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_VendedorMouseClicked
         if (Icono_Vendedor.isEnabled()) {
-            Cambio_Menu CM= new Cambio_Menu(Panel_Vendedores,Panel_Tienda,Panel_Productos,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor);
+            Cambio_Menu CM= new Cambio_Menu(Panel_Vendedores,Panel_Tienda,Panel_Productos,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor,Panel_Bitacora);
             CM.start();
         }
         
     }//GEN-LAST:event_Icono_VendedorMouseClicked
 
     private void Icono_FacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_FacturaMouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Factura,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Informes,Icono_Vendedor);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Factura,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Informes,Icono_Vendedor,Panel_Bitacora);
         CM.start();
     }//GEN-LAST:event_Icono_FacturaMouseClicked
 
     private void Icono_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_ClienteMouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Informes,Icono_Vendedor);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Panel_Informes,Icono_Vendedor,Panel_Bitacora);
         CM.start();
     }//GEN-LAST:event_Icono_ClienteMouseClicked
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
-        Cambio_Menu CM= new Cambio_Menu(Panel_Informes,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Icono_Vendedor);
+        Cambio_Menu CM= new Cambio_Menu(Panel_Informes,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Icono_Vendedor,Panel_Bitacora);
         CM.start();
     }//GEN-LAST:event_jLabel29MouseClicked
 
@@ -1051,6 +1171,11 @@ public class Loggin extends javax.swing.JFrame {
             Panel_Selec_Tienda.setVisible(false);
         
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
+        Cambio_Menu CM= new Cambio_Menu(Panel_Bitacora,Panel_Cliente,Panel_Tienda,Panel_Productos,Panel_Vendedores,Panel_Factura,Icono_Vendedor,Panel_Informes);
+        CM.start();
+    }//GEN-LAST:event_jLabel31MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1111,6 +1236,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel Label_Total;
     private javax.swing.JPanel Menu_Admin;
     private javax.swing.JPanel Menu_Customer;
+    private javax.swing.JPanel Panel_Bitacora;
     private javax.swing.JPanel Panel_Cliente;
     private javax.swing.JPanel Panel_Factura;
     private javax.swing.JPanel Panel_Informes;
@@ -1181,6 +1307,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1196,6 +1323,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
@@ -1204,6 +1332,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -1223,6 +1352,9 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JPanel panel_ingreso;
     // End of variables declaration//GEN-END:variables
 }
