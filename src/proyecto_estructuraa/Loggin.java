@@ -7,7 +7,9 @@ package proyecto_estructuraa;
 import java.awt.Label;
 import javax.swing.JFrame;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -24,6 +26,12 @@ public class Loggin extends javax.swing.JFrame {
     ConexionDB c;
     String ubicacionAntigua;
     String tipoAntiguo;
+    int UPCProductoXAgregar;
+    int idTiendaInventario;
+    int UPCInventario;
+    int idClienteIngresado = 0;
+    ArrayList<String> Clientes = new ArrayList<>();
+    String CliNom;
     ArrayList<Producto> pro = new ArrayList();
     ArrayList<Vendedor> ven = new ArrayList();
     ArrayList<Producto> pro2 = new ArrayList();
@@ -50,7 +58,334 @@ public class Loggin extends javax.swing.JFrame {
         cm.start();
         
     }
-   
+   public void meterClientes(){
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from vistacliente");
+            while(rs.next()){ 
+                int id = rs.getInt("idcliente");
+                String NumeroCad =  Integer.toString(id);
+
+                String concat = rs.getString("nombreCliente") + " " + NumeroCad;
+                Clientes.add(rs.getString("nombreCliente"));
+            }
+            
+            
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+    public void mostrarInventario(){
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("idTienda");
+        tInventario.addColumn("nombreTienda");
+        tInventario.addColumn("NombreProducto");
+        tInventario.addColumn("TamañoProducto");
+        tInventario.addColumn("Embalaje");
+        tInventario.addColumn("Marca");
+        tInventario.addColumn("Precio");
+        tInventario.addColumn("CantidadProducto");
+        tInventario.addColumn("UbicacionTienda");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[9];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 1view_Inv");
+            while(rs.next()){
+                int id = rs.getInt("idTienda");
+                String IntCad =  Integer.toString(id);
+                datos[0] = IntCad;
+                
+                datos[1] = rs.getString("nombreTienda");
+                datos[2] = rs.getString("nombreProducto");
+                datos[3] = rs.getString("tamanoProducto");
+                datos[4] = rs.getString("embalaje");
+                datos[5] = rs.getString("marca");
+                
+                float precio = rs.getFloat("precioProducto");
+                String FloatCad1 = Float.toString(precio);
+                datos[6] = FloatCad1;
+                
+                int cantidad = rs.getInt("cantidadProducto");
+                String NumeroCad =  Integer.toString(cantidad);
+                datos[7] = NumeroCad;
+                
+                datos[8] = rs.getString("ubicacionTienda");
+                
+                tInventario.addRow(datos);
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+    
+    public void mostrarComprasCliente(){
+        //System.out.println(Nom);
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("NombreCliente");
+        tInventario.addColumn("NumeroFactura");
+        tInventario.addColumn("FechaFactura");
+        tInventario.addColumn("IDProductosComprados");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[4];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 2view_CxC");
+            String veri = "";
+            while(rs.next()){
+               
+                datos[0] = rs.getString("nombreCliente");
+                datos[1] = rs.getString("numeroFactura");
+
+                java.util.Date fecha = rs.getDate("fechaFactura");
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaFormateada = formato.format(fecha);
+                datos[2] = fechaFormateada;
+
+                //float total = rs.getString("ProductosComprados");
+                String FloatCad = rs.getString("ProductosComprados");
+                datos[3] = FloatCad;
+                tInventario.addRow(datos);
+                
+                
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
+    public void mostrarHistorialVentas(){
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("NombreTienda");
+        tInventario.addColumn("NumeroFactura");
+        tInventario.addColumn("FechaFactura");
+        tInventario.addColumn("Total");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[4];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 3view_HistorialVenta");
+            while(rs.next()){
+                
+                datos[0] = rs.getString("nombreTienda");
+                datos[1] = rs.getString("numeroFactura");
+                
+                java.util.Date fecha = rs.getDate("fechaFactura");
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                String fechaFormateada = formato.format(fecha);
+                datos[2] = fechaFormateada;
+                
+                float total = rs.getFloat("total");
+                String FloatCad = Float.toString(total);
+                datos[3] = FloatCad;
+                
+                
+                tInventario.addRow(datos);
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+    public void mostrarTop20Tiendas(){
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("NombreTienda");
+        tInventario.addColumn("NombreProducto");
+        tInventario.addColumn("CantidadVendida");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[3];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 4view_Top20Tienda");
+            while(rs.next()){
+                
+                datos[0] = rs.getString("nombreTienda");
+                datos[1] = rs.getString("nombreProducto");
+                
+                int compras = rs.getInt("CantidadVendida");
+                String NumeroCad1 =  Integer.toString(compras);
+                datos[2] = NumeroCad1;
+                   
+                tInventario.addRow(datos);
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+    
+    public void mostrarTop20TiendasUbi(){
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("UbicacionTienda");
+        tInventario.addColumn("NombreProducto");
+        tInventario.addColumn("CantidadVendida");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[3];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 5view_Top20Ubi");
+            while(rs.next()){
+                
+                datos[0] = rs.getString("ubicacionTienda");
+                datos[1] = rs.getString("nombreProducto");
+                
+                int compras = rs.getInt("CantidadVendida");
+                String NumeroCad1 =  Integer.toString(compras);
+                datos[2] = NumeroCad1;
+                   
+                tInventario.addRow(datos);
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+    
+    public void mostrarTiendsVentas(){
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("NombreTienda");
+        tInventario.addColumn("VentasAnuales");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[3];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 6view_Top5");
+            while(rs.next()){
+                
+                datos[0] = rs.getString("nombreTienda");
+                
+                
+                float total = rs.getFloat("VentasAnuales");
+                String FloatCad = Float.toString(total);
+                datos[1] = FloatCad;
+                   
+                tInventario.addRow(datos);
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+    
+    // falta 2
+    public void mostrarCocaCola(){
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("NombreTienda");
+        tInventario.addColumn("VentasCocaCola");
+        tInventario.addColumn("VentasPepsi");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[3];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 7view_CocaCola");
+            while(rs.next()){
+                
+                datos[0] = rs.getString("ubicacionTienda");
+                
+                int compras = rs.getInt("VentasCocaCola");
+                String NumeroCad =  Integer.toString(compras);
+                datos[1] = NumeroCad;
+                
+                
+                int compras1 = rs.getInt("VentasPepsi");
+                String NumeroCad1 =  Integer.toString(compras);
+                datos[2] = NumeroCad1;
+                   
+                tInventario.addRow(datos);
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+    
+     public void mostrarAntiLeche(){
+        DefaultTableModel tInventario = new DefaultTableModel();
+        tInventario.addColumn("TipoProducto");
+        tInventario.addColumn("CantidadCompras");
+        tableReportes.setModel(tInventario);
+        
+        String []datos = new String[2];
+        
+        Statement st;
+        ResultSet rs;
+        
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("select * from 8view_ExLeche");
+            while(rs.next()){
+                datos[0] = rs.getString("tipoProducto");
+                
+                int compras = rs.getInt("CantidadCompras");
+                String NumeroCad =  Integer.toString(compras);
+                datos[1] = NumeroCad;
+
+                   
+                tInventario.addRow(datos);
+            }
+            
+            tableReportes.setModel(tInventario);
+        }catch(SQLException e){
+            System.out.println("Error!!!");
+        }
+        
+    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,9 +411,9 @@ public class Loggin extends javax.swing.JFrame {
         table_Vendedores = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel55 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        cbox_ListaVendedores = new javax.swing.JComboBox<>();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTable10 = new javax.swing.JTable();
+        table_ProductosparaVendedor = new javax.swing.JTable();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTable11 = new javax.swing.JTable();
         jButton12 = new javax.swing.JButton();
@@ -135,20 +470,20 @@ public class Loggin extends javax.swing.JFrame {
         jLabel50 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cbox_NombreTiendas = new javax.swing.JComboBox<>();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTable8 = new javax.swing.JTable();
+        table_TodosProductos = new javax.swing.JTable();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTable9 = new javax.swing.JTable();
-        jButton11 = new javax.swing.JButton();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField20 = new javax.swing.JTextField();
+        table_ProductosXTienda = new javax.swing.JTable();
+        btn_agregarProductoTienda = new javax.swing.JButton();
+        tf_precio = new javax.swing.JTextField();
+        tf_cantidad = new javax.swing.JTextField();
+        tf_reorden = new javax.swing.JTextField();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
-        jToggleButton7 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
+        btn_eliminarInventario = new javax.swing.JToggleButton();
+        btn_modifyInventario = new javax.swing.JToggleButton();
         Panel_Factura = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -173,12 +508,12 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Bitacora = new javax.swing.JPanel();
         jLabel48 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_Bitacora = new javax.swing.JTextArea();
         Panel_Informes = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        ComboReportes = new javax.swing.JComboBox<>();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tableReportes = new javax.swing.JTable();
         Panel_menu_abajo = new javax.swing.JPanel();
         jLabel72 = new javax.swing.JLabel();
         Panel_Menu_Izquierda = new javax.swing.JPanel();
@@ -188,7 +523,7 @@ public class Loggin extends javax.swing.JFrame {
         Icono_Factura = new javax.swing.JLabel();
         Icono_Cliente = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
+        lbl_Bitacora = new javax.swing.JLabel();
         Fondo5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Menu_Customer = new javax.swing.JPanel();
@@ -374,17 +709,22 @@ public class Loggin extends javax.swing.JFrame {
         jPanel5.add(jLabel55);
         jLabel55.setBounds(40, 10, 180, 70);
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBox7MouseClicked(evt);
+        cbox_ListaVendedores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbox_ListaVendedores.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbox_ListaVendedoresItemStateChanged(evt);
             }
         });
-        jPanel5.add(jComboBox7);
-        jComboBox7.setBounds(220, 30, 310, 40);
+        cbox_ListaVendedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbox_ListaVendedoresMouseClicked(evt);
+            }
+        });
+        jPanel5.add(cbox_ListaVendedores);
+        cbox_ListaVendedores.setBounds(220, 30, 310, 40);
 
-        jTable10.setBackground(new java.awt.Color(153, 153, 153));
-        jTable10.setModel(new javax.swing.table.DefaultTableModel(
+        table_ProductosparaVendedor.setBackground(new java.awt.Color(153, 153, 153));
+        table_ProductosparaVendedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -395,7 +735,7 @@ public class Loggin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane11.setViewportView(jTable10);
+        jScrollPane11.setViewportView(table_ProductosparaVendedor);
 
         jPanel5.add(jScrollPane11);
         jScrollPane11.setBounds(30, 120, 430, 440);
@@ -846,65 +1186,75 @@ public class Loggin extends javax.swing.JFrame {
         jPanel3.add(jLabel51);
         jLabel51.setBounds(40, 10, 130, 70);
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox6);
-        jComboBox6.setBounds(170, 30, 310, 40);
+        cbox_NombreTiendas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbox_NombreTiendas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbox_NombreTiendasItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(cbox_NombreTiendas);
+        cbox_NombreTiendas.setBounds(170, 30, 310, 40);
 
-        jTable8.setBackground(new java.awt.Color(153, 153, 153));
-        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+        table_TodosProductos.setBackground(new java.awt.Color(153, 153, 153));
+        table_TodosProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "UPC", "Nombre Producto", "Tamano Producto", "Embalaje", "Marca", "Tipo"
             }
         ));
-        jScrollPane9.setViewportView(jTable8);
+        jScrollPane9.setViewportView(table_TodosProductos);
 
         jPanel3.add(jScrollPane9);
         jScrollPane9.setBounds(50, 100, 400, 300);
 
-        jTable9.setBackground(new java.awt.Color(153, 153, 153));
-        jTable9.setModel(new javax.swing.table.DefaultTableModel(
+        table_ProductosXTienda.setBackground(new java.awt.Color(153, 153, 153));
+        table_ProductosXTienda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idTienda", "UPC", "Precio", "Cantidad", "Reorden"
             }
         ));
-        jScrollPane10.setViewportView(jTable9);
+        jScrollPane10.setViewportView(table_ProductosXTienda);
 
         jPanel3.add(jScrollPane10);
         jScrollPane10.setBounds(560, 100, 400, 300);
 
-        jButton11.setBackground(new java.awt.Color(204, 204, 204));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(0, 0, 0));
-        jButton11.setText("->");
-        jPanel3.add(jButton11);
-        jButton11.setBounds(480, 230, 50, 31);
+        btn_agregarProductoTienda.setBackground(new java.awt.Color(204, 204, 204));
+        btn_agregarProductoTienda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_agregarProductoTienda.setForeground(new java.awt.Color(0, 0, 0));
+        btn_agregarProductoTienda.setText("->");
+        btn_agregarProductoTienda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_agregarProductoTiendaMouseClicked(evt);
+            }
+        });
+        jPanel3.add(btn_agregarProductoTienda);
+        btn_agregarProductoTienda.setBounds(480, 230, 50, 27);
 
-        jTextField18.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField18.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField18);
-        jTextField18.setBounds(40, 440, 220, 40);
+        tf_precio.setBackground(new java.awt.Color(102, 102, 102));
+        tf_precio.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(tf_precio);
+        tf_precio.setBounds(40, 440, 220, 40);
 
-        jTextField19.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField19.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField19);
-        jTextField19.setBounds(40, 520, 220, 40);
+        tf_cantidad.setBackground(new java.awt.Color(102, 102, 102));
+        tf_cantidad.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(tf_cantidad);
+        tf_cantidad.setBounds(40, 520, 220, 40);
 
-        jTextField20.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField20.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel3.add(jTextField20);
-        jTextField20.setBounds(280, 480, 220, 40);
+        tf_reorden.setBackground(new java.awt.Color(102, 102, 102));
+        tf_reorden.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(tf_reorden);
+        tf_reorden.setBounds(280, 480, 220, 40);
 
         jLabel52.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel52.setForeground(new java.awt.Color(137, 250, 230));
@@ -924,17 +1274,27 @@ public class Loggin extends javax.swing.JFrame {
         jPanel3.add(jLabel54);
         jLabel54.setBounds(120, 410, 60, 20);
 
-        jToggleButton7.setBackground(new java.awt.Color(204, 204, 204));
-        jToggleButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jToggleButton7.setText("Eliminar");
-        jPanel3.add(jToggleButton7);
-        jToggleButton7.setBounds(590, 430, 140, 40);
+        btn_eliminarInventario.setBackground(new java.awt.Color(204, 204, 204));
+        btn_eliminarInventario.setForeground(new java.awt.Color(0, 0, 0));
+        btn_eliminarInventario.setText("Eliminar");
+        btn_eliminarInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_eliminarInventarioMouseClicked(evt);
+            }
+        });
+        jPanel3.add(btn_eliminarInventario);
+        btn_eliminarInventario.setBounds(590, 430, 140, 40);
 
-        jToggleButton8.setBackground(new java.awt.Color(204, 204, 204));
-        jToggleButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jToggleButton8.setText("Modificar");
-        jPanel3.add(jToggleButton8);
-        jToggleButton8.setBounds(590, 490, 140, 40);
+        btn_modifyInventario.setBackground(new java.awt.Color(204, 204, 204));
+        btn_modifyInventario.setForeground(new java.awt.Color(0, 0, 0));
+        btn_modifyInventario.setText("Modificar");
+        btn_modifyInventario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_modifyInventarioMouseClicked(evt);
+            }
+        });
+        jPanel3.add(btn_modifyInventario);
+        btn_modifyInventario.setBounds(590, 490, 140, 40);
 
         Panel_Tienda.addTab("Inventario", jPanel3);
 
@@ -1050,19 +1410,19 @@ public class Loggin extends javax.swing.JFrame {
         jToggleButton4.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton4.setText("Agregar");
         Panel_Factura.add(jToggleButton4);
-        jToggleButton4.setBounds(20, 520, 76, 27);
+        jToggleButton4.setBounds(20, 520, 73, 23);
 
         jToggleButton5.setBackground(new java.awt.Color(204, 204, 204));
         jToggleButton5.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton5.setText("Eliminar");
         Panel_Factura.add(jToggleButton5);
-        jToggleButton5.setBounds(20, 560, 77, 27);
+        jToggleButton5.setBounds(20, 560, 71, 23);
 
         jToggleButton6.setBackground(new java.awt.Color(204, 204, 204));
         jToggleButton6.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton6.setText("Modificar");
         Panel_Factura.add(jToggleButton6);
-        jToggleButton6.setBounds(150, 540, 85, 27);
+        jToggleButton6.setBounds(150, 540, 80, 23);
 
         Menu_Admin.add(Panel_Factura);
         Panel_Factura.setBounds(1230, 0, 1080, 610);
@@ -1076,9 +1436,9 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Bitacora.add(jLabel48);
         jLabel48.setBounds(480, 0, 150, 50);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane8.setViewportView(jTextArea1);
+        ta_Bitacora.setColumns(20);
+        ta_Bitacora.setRows(5);
+        jScrollPane8.setViewportView(ta_Bitacora);
 
         Panel_Bitacora.add(jScrollPane8);
         jScrollPane8.setBounds(50, 70, 1000, 510);
@@ -1096,23 +1456,25 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Informes.add(jLabel30);
         jLabel30.setBounds(470, 0, 170, 60);
 
-        jComboBox3.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        Panel_Informes.add(jComboBox3);
-        jComboBox3.setBounds(460, 60, 170, 40);
+        ComboReportes.setForeground(new java.awt.Color(102, 102, 102));
+        ComboReportes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vista 1", "Vista 2", "Vista 3", "Vista 4", "Vista 5", "Vista 6", "Vista 7", "Vista 8" }));
+        ComboReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboReportesActionPerformed(evt);
+            }
+        });
+        Panel_Informes.add(ComboReportes);
+        ComboReportes.setBounds(470, 60, 170, 40);
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tableReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane6.setViewportView(jTable6);
+        jScrollPane6.setViewportView(tableReportes);
 
         Panel_Informes.add(jScrollPane6);
         jScrollPane6.setBounds(30, 110, 960, 430);
@@ -1181,11 +1543,11 @@ public class Loggin extends javax.swing.JFrame {
             }
         });
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Bitacora.png"))); // NOI18N
-        jLabel31.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbl_Bitacora.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lbl_Bitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Bitacora.png"))); // NOI18N
+        lbl_Bitacora.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel31MouseClicked(evt);
+                lbl_BitacoraMouseClicked(evt);
             }
         });
 
@@ -1197,7 +1559,7 @@ public class Loggin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(Panel_Menu_IzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Icono_Vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31)
+                    .addComponent(lbl_Bitacora)
                     .addComponent(jLabel29)
                     .addComponent(Icono_Cliente)
                     .addComponent(Icono_Factura)
@@ -1221,7 +1583,7 @@ public class Loggin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbl_Bitacora, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -1431,7 +1793,7 @@ public class Loggin extends javax.swing.JFrame {
         jPanel2.add(jScrollPane7);
         jScrollPane7.setBounds(20, 150, 1110, 340);
         jPanel2.add(jSpinner1);
-        jSpinner1.setBounds(150, 110, 68, 26);
+        jSpinner1.setBounds(150, 110, 64, 22);
 
         Comprar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Comprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/verificar (3).png"))); // NOI18N
@@ -1721,6 +2083,8 @@ public class Loggin extends javax.swing.JFrame {
         tf_horarioTienda.setText("");
         tf_ubicacionTienda.setText("");
         listarTiendas(table_Tiendas);
+        listarProductos(table_TodosProductos);
+        listarNombreTiendas(cbox_NombreTiendas);
         ListSelectionModel selectionModel = table_Tiendas.getSelectionModel();
         selectionModel.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
@@ -1732,6 +2096,32 @@ public class Loggin extends javax.swing.JFrame {
                         tf_horarioTienda.setText(table_Tiendas.getValueAt(filaSeleccionada, 2).toString());
                         tf_ubicacionTienda.setText(table_Tiendas.getValueAt(filaSeleccionada, 3).toString());
                         ubicacionAntigua = table_Tiendas.getValueAt(filaSeleccionada, 3).toString();
+                    }
+                }
+            }
+        });
+        ListSelectionModel selectionModel2 = table_TodosProductos.getSelectionModel();
+        selectionModel2.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int filaSeleccionada = table_TodosProductos.getSelectedRow();
+                    if (filaSeleccionada >= 0) {
+                        UPCProductoXAgregar = Integer.parseInt(table_TodosProductos.getValueAt(filaSeleccionada, 0).toString());
+                    }
+                }
+            }
+        });
+        ListSelectionModel selectionModel3 = table_ProductosXTienda.getSelectionModel();
+        selectionModel3.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int filaSeleccionada = table_ProductosXTienda.getSelectedRow();
+                    if (filaSeleccionada >= 0) {
+                        idTiendaInventario = Integer.parseInt(table_ProductosXTienda.getValueAt(filaSeleccionada, 0).toString());
+                        UPCInventario = Integer.parseInt(table_ProductosXTienda.getValueAt(filaSeleccionada, 1).toString());
+                        tf_precio.setText(table_ProductosXTienda.getValueAt(filaSeleccionada, 2).toString());
+                        tf_cantidad.setText(table_ProductosXTienda.getValueAt(filaSeleccionada, 3).toString());
+                        tf_reorden.setText(table_ProductosXTienda.getValueAt(filaSeleccionada, 4).toString());
                     }
                 }
             }
@@ -1779,8 +2169,8 @@ public class Loggin extends javax.swing.JFrame {
             tf_nombreVendedor.setText("");
             listarProductosarray();
             listarVendedoresarray();
-            listarVendedores2(jComboBox7);
-            listarProductos(jTable10);
+            listarVendedores2(cbox_ListaVendedores);
+            listarProductos(table_ProductosparaVendedor);
             DefaultTableModel modeloTienda = new DefaultTableModel() ;
             modeloTienda.addColumn("Nombre");
             modeloTienda.addColumn("Tamaño");
@@ -1876,10 +2266,29 @@ public class Loggin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel31MouseClicked
+    private void lbl_BitacoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_BitacoraMouseClicked
         Cambio_Menu CM= new Cambio_Menu(Panel_Bitacora,Panel_Cliente,Panel_Productos,Panel_Factura,Icono_Vendedor,Panel_Informes,Panel_Tienda,Panel_vendedores,true);
         CM.start();
-    }//GEN-LAST:event_jLabel31MouseClicked
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select * from bitacora");
+            StringBuilder result = new StringBuilder();
+            while(rs.next()){
+                String tablaAfectada = rs.getString("tabla_Afectada");
+                String operacion = rs.getString("operacion");
+                String fechaYHora = rs.getString("fecha");
+                String usuario = rs.getString("usuario");
+                result.append("En tabla ").append(tablaAfectada).append(", se realizo ").append(operacion).append(" el ").append(fechaYHora).append(" por ").append(usuario).append(".").append("\n");
+            }
+            ta_Bitacora.setText("");
+            ta_Bitacora.setText(result.toString());
+        }catch(Exception e){
+            e.printStackTrace();
+        } 
+        
+    }//GEN-LAST:event_lbl_BitacoraMouseClicked
 
     private void jLabel70MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel70MouseClicked
         Panel_Factura_Cliente.setVisible(false);
@@ -2211,9 +2620,23 @@ public class Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_deleteProductoMouseClicked
 
     private void Boton_Ingreso3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_Ingreso3MouseClicked
-        String variableprovisionalcorreocustomer="paco@gmail.com";
-        if (Correo.getText().equals(variableprovisionalcorreocustomer)) {
-            c = new ConexionDB();
+        c = new ConexionDB();
+        String correoObtenido = "";
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select idCliente,correo from cliente where correo = '"+Correo.getText()+"'");
+            while(rs.next()){
+                idClienteIngresado = rs.getInt("idCliente");
+                correoObtenido = rs.getString("correo");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+        
+        if (Correo.getText().equals(correoObtenido)) {
             panel_ingreso_Usuario.setVisible(false);
             Panel_Selec_Tienda.setVisible(true);
             listarTiendas2(jComboBox5);
@@ -2255,9 +2678,149 @@ public class Loggin extends javax.swing.JFrame {
         desenlistarProductosvendedor();
     }//GEN-LAST:event_jButton12MouseClicked
 
-    private void jComboBox7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox7MouseClicked
+    private void cbox_ListaVendedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbox_ListaVendedoresMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox7MouseClicked
+    }//GEN-LAST:event_cbox_ListaVendedoresMouseClicked
+
+    private void ComboReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboReportesActionPerformed
+        // TODO add your handling code here:
+        String selectdValue = ComboReportes.getSelectedItem().toString();
+        if(selectdValue == "Vista 1"){
+            mostrarInventario();
+        }else if(selectdValue == "Vista 2"){
+            //ComboReportesFiltro.enable(true);
+            DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
+            for (String elemento : Clientes) {
+                comboBoxModel.addElement(elemento);
+            }
+            
+            mostrarComprasCliente();
+
+        }else if(selectdValue == "Vista 3"){
+            // ComboReportesFiltro.removeAllItems();
+            mostrarHistorialVentas();
+        }else if(selectdValue == "Vista 4"){
+            mostrarTop20Tiendas();
+        }else if(selectdValue == "Vista 5"){
+            mostrarTop20TiendasUbi();
+        }else if(selectdValue == "Vista 6"){
+            mostrarTiendsVentas();
+        }else if(selectdValue == "Vista 7"){
+            mostrarCocaCola();
+        }else{ // vista 8
+            mostrarAntiLeche();
+        }
+    }//GEN-LAST:event_ComboReportesActionPerformed
+
+    private void cbox_ListaVendedoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbox_ListaVendedoresItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbox_ListaVendedoresItemStateChanged
+
+    private void cbox_NombreTiendasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbox_NombreTiendasItemStateChanged
+        // TODO add your handling code here:
+        String nombreTienda = (String)cbox_NombreTiendas.getSelectedItem();
+        listarProductosXTienda(nombreTienda, table_ProductosXTienda);
+    }//GEN-LAST:event_cbox_NombreTiendasItemStateChanged
+
+    private void btn_agregarProductoTiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarProductoTiendaMouseClicked
+        // TODO add your handling code here:
+        try{
+            int idTienda=0;
+            String nombreTienda = (String)cbox_NombreTiendas.getSelectedItem();
+            float precio = Float.parseFloat(tf_precio.getText());
+            int cantidad = Integer.parseInt(tf_cantidad.getText());
+            String reorden = tf_reorden.getText();
+            Statement st;
+            ResultSet rs;
+            try{
+                st = c.conexion.createStatement();
+                rs = st.executeQuery("Select idTienda from tienda where nombreTienda = '"+nombreTienda+"'");
+                while(rs.next()){
+                    idTienda = rs.getInt("idTienda");
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            } 
+            if(idTienda != 0){
+                CallableStatement llamador = c.conexion.prepareCall("CALL insertarInventario(?,?,?,?,?)");
+                llamador.setInt(1,idTienda);
+                llamador.setInt(2, UPCProductoXAgregar);
+                llamador.setFloat(3, precio);
+                llamador.setInt(4, cantidad);
+                llamador.setString(5, reorden);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Producto Agregado a Inventario Exitosamente");
+                listarProductosXTienda(nombreTienda, table_ProductosXTienda);
+                tf_precio.setText("");
+                tf_cantidad.setText("");
+                tf_reorden.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_agregarProductoTiendaMouseClicked
+
+    private void btn_modifyInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_modifyInventarioMouseClicked
+        // TODO add your handling code here:
+        try{
+            String nombreTienda = (String)cbox_NombreTiendas.getSelectedItem();
+            float precio = Float.parseFloat(tf_precio.getText());
+            int cantidad = Integer.parseInt(tf_cantidad.getText());
+            String reorden = tf_reorden.getText();
+            Statement st;
+            ResultSet rs;
+            if(idTiendaInventario != 0){
+                CallableStatement llamador = c.conexion.prepareCall("CALL updateInventario(?,?,?,?,?)");
+                llamador.setInt(1,idTiendaInventario);
+                llamador.setInt(2, UPCInventario);
+                llamador.setFloat(3, precio);
+                llamador.setInt(4, cantidad);
+                llamador.setString(5, reorden);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Producto del Inventario Modificado Exitosamente");
+                listarProductosXTienda(nombreTienda, table_ProductosXTienda);
+                tf_precio.setText("");
+                tf_cantidad.setText("");
+                tf_reorden.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_modifyInventarioMouseClicked
+
+    private void btn_eliminarInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarInventarioMouseClicked
+        // TODO add your handling code here:
+        try{
+            String nombreTienda = (String)cbox_NombreTiendas.getSelectedItem();
+            Statement st;
+            ResultSet rs;
+            if(idTiendaInventario != 0){
+                CallableStatement llamador = c.conexion.prepareCall("CALL deleteInventario(?,?)");
+                llamador.setInt(1,idTiendaInventario);
+                llamador.setInt(2, UPCInventario);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Producto del Inventario Eliminado Exitosamente");
+                listarProductosXTienda(nombreTienda, table_ProductosXTienda);
+                tf_precio.setText("");
+                tf_cantidad.setText("");
+                tf_reorden.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_eliminarInventarioMouseClicked
     private void listarVendedores(JTable tablaVendedores){
         Statement st;
         ResultSet rs;
@@ -2381,12 +2944,28 @@ public class Loggin extends javax.swing.JFrame {
             e.printStackTrace();
         }       
     }
+    private void listarNombreTiendas(JComboBox cboxTienda){
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select nombreTienda from tienda");
+            DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+            while(rs.next()){
+                String nombreTienda = rs.getString("nombreTienda");
+                modelo.addElement(nombreTienda);
+            }
+            cboxTienda.setModel(modelo);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     private void listarProductosvendedor(){
             
         try{
             boolean pass=false;
             for (Producto producto : pro2) {
-                producto.getUpc().equals(pro.get(jTable10.getSelectedRow()).getUpc());
+                producto.getUpc().equals(pro.get(table_ProductosparaVendedor.getSelectedRow()).getUpc());
                 pass=true;
             }
             if (pass) {
@@ -2395,14 +2974,14 @@ public class Loggin extends javax.swing.JFrame {
                 DefaultTableModel modeloTienda = new DefaultTableModel() ;
                     modeloTienda.addColumn("UPC");
                 modeloTienda.addColumn("Nombre");
-                pro2.add(pro.get(jTable10.getSelectedRow()));
+                pro2.add(pro.get(table_ProductosparaVendedor.getSelectedRow()));
                 for (Producto producto : pro2) {
                     modeloTienda.addRow(new Object[]{producto.getUpc(),producto.getNombre()});
                 }  
                 jTable11.setModel(modeloTienda);
                 Vendedor venmientra= new Vendedor();
                 for (Vendedor vende : ven) {
-                    if (jComboBox7.getSelectedItem().equals(vende.getNombre())) {
+                    if (cbox_ListaVendedores.getSelectedItem().equals(vende.getNombre())) {
                         venmientra=vende;
                     }
                 }
@@ -2433,6 +3012,31 @@ public class Loggin extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Seleccione Un Producto A Eliminar");
         }       
+    }
+    private void listarProductosXTienda(String nombreTienda, JTable tablaInventarioTienda){
+        try{
+            Statement st,st2;
+            ResultSet rs,rs2;
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select idTienda from tienda where nombreTienda = '" + nombreTienda + "'");
+            while(rs.next()){    
+                int idTienda = rs.getInt("idTienda");
+                st2 = c.conexion.createStatement();
+                rs2 = st.executeQuery("Select * from inventario where idTienda=" + idTienda);
+                DefaultTableModel modeloProductosXTienda = (DefaultTableModel)tablaInventarioTienda.getModel();
+                modeloProductosXTienda.setRowCount(0);
+                while(rs2.next()){
+                    int id = rs2.getInt("idTienda");
+                    int upc = rs2.getInt("UPC");
+                    float precio = rs2.getFloat("precioProducto");
+                    int cantidad = rs2.getInt("cantidadProducto");
+                    String reorden = rs2.getString("reordenProducto");
+                    modeloProductosXTienda.addRow(new Object[]{id,upc,precio,cantidad,reorden});
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     private void listarTiendas(JTable tablaTiendas){
         Statement st;
@@ -2513,6 +3117,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel Agregar_Producto;
     private javax.swing.JButton Boton_Ingreso;
     private javax.swing.JButton Boton_Ingreso3;
+    private javax.swing.JComboBox<String> ComboReportes;
     private javax.swing.JLabel Comprar;
     private javax.swing.JPasswordField Contra;
     private javax.swing.JTextField Correo;
@@ -2551,6 +3156,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_menu_abajo;
     private javax.swing.JTabbedPane Panel_vendedores;
     private javax.swing.JTextField Usuario;
+    private javax.swing.JButton btn_agregarProductoTienda;
     private javax.swing.JToggleButton btn_crearTienda;
     private javax.swing.JButton btn_createCliente;
     private javax.swing.JButton btn_createProducto;
@@ -2558,22 +3164,22 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JButton btn_deleteCliente;
     private javax.swing.JButton btn_deleteProducto;
     private javax.swing.JButton btn_deleteVendedor;
+    private javax.swing.JToggleButton btn_eliminarInventario;
     private javax.swing.JToggleButton btn_eliminarTienda;
     private javax.swing.JToggleButton btn_modificarTienda;
+    private javax.swing.JToggleButton btn_modifyInventario;
     private javax.swing.JButton btn_updateCliente;
     private javax.swing.JButton btn_updateProducto;
     private javax.swing.JButton btn_updateVendedor;
+    private javax.swing.JComboBox<String> cbox_ListaVendedores;
+    private javax.swing.JComboBox<String> cbox_NombreTiendas;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2599,7 +3205,6 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -2672,34 +3277,31 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable10;
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable12;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
-    private javax.swing.JTable jTable8;
-    private javax.swing.JTable jTable9;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton7;
-    private javax.swing.JToggleButton jToggleButton8;
+    private javax.swing.JLabel lbl_Bitacora;
     private javax.swing.JPanel panel_ingreso;
     private javax.swing.JPanel panel_ingreso_Usuario;
+    private javax.swing.JTextArea ta_Bitacora;
+    private javax.swing.JTable tableReportes;
     private javax.swing.JTable table_Clientes;
     private javax.swing.JTable table_Productos;
+    private javax.swing.JTable table_ProductosXTienda;
+    private javax.swing.JTable table_ProductosparaVendedor;
     private javax.swing.JTable table_Tiendas;
+    private javax.swing.JTable table_TodosProductos;
     private javax.swing.JTable table_Vendedores;
     private javax.swing.JTextField tf_UPC;
+    private javax.swing.JTextField tf_cantidad;
     private javax.swing.JTextField tf_correoCliente;
     private javax.swing.JTextField tf_embalajeProducto;
     private javax.swing.JTextField tf_horarioTienda;
@@ -2711,6 +3313,8 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombreProducto;
     private javax.swing.JTextField tf_nombreTienda;
     private javax.swing.JTextField tf_nombreVendedor;
+    private javax.swing.JTextField tf_precio;
+    private javax.swing.JTextField tf_reorden;
     private javax.swing.JTextField tf_tamanoProducto;
     private javax.swing.JTextField tf_tipoProducto;
     private javax.swing.JTextField tf_ubicacionTienda;
