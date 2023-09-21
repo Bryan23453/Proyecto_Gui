@@ -6,13 +6,22 @@ package proyecto_estructuraa;
 
 import java.awt.Label;
 import javax.swing.JFrame;
-
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author bryan
  */
 public class Loggin extends javax.swing.JFrame {
-    
+    ConexionDB c;
+    String ubicacionAntigua;
+    String tipoAntiguo;
     /**
      * Creates new form Loggin
      */
@@ -51,13 +60,13 @@ public class Loggin extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        tf_nombreVendedor = new javax.swing.JTextField();
+        tf_idVendedor = new javax.swing.JTextField();
+        btn_updateVendedor = new javax.swing.JButton();
+        btn_deleteVendedor = new javax.swing.JButton();
+        btn_createVendedor = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table_Vendedores = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel55 = new javax.swing.JLabel();
         jComboBox7 = new javax.swing.JComboBox<>();
@@ -72,18 +81,18 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Tienda = new javax.swing.JTabbedPane();
         Panel_Tiendita = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        tf_idTienda = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        tf_nombreTienda = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        tf_horarioTienda = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        table_Tiendas = new javax.swing.JTable();
+        btn_modificarTienda = new javax.swing.JToggleButton();
+        btn_eliminarTienda = new javax.swing.JToggleButton();
+        btn_crearTienda = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        tf_ubicacionTienda = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
@@ -138,33 +147,35 @@ public class Loggin extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        tf_embalajeProducto = new javax.swing.JTextField();
+        tf_UPC = new javax.swing.JTextField();
+        tf_nombreProducto = new javax.swing.JTextField();
+        tf_tamanoProducto = new javax.swing.JTextField();
+        btn_deleteProducto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        table_Productos = new javax.swing.JTable();
+        btn_createProducto = new javax.swing.JButton();
+        btn_updateProducto = new javax.swing.JButton();
+        tf_marcaProducto = new javax.swing.JTextField();
+        jLabel73 = new javax.swing.JLabel();
+        tf_tipoProducto = new javax.swing.JTextField();
         Panel_Cliente = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        tf_idCliente = new javax.swing.JTextField();
+        tf_nombreCliente = new javax.swing.JTextField();
+        tf_correoCliente = new javax.swing.JTextField();
+        btn_deleteCliente = new javax.swing.JButton();
+        btn_createCliente = new javax.swing.JButton();
+        btn_updateCliente = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        table_Clientes = new javax.swing.JTable();
         Panel_menu_abajo = new javax.swing.JPanel();
         jLabel72 = new javax.swing.JLabel();
         Panel_Menu_Izquierda = new javax.swing.JPanel();
-        Tienda_Icono = new javax.swing.JLabel();
+        Icono_Tienda = new javax.swing.JLabel();
         Icono_Producto = new javax.swing.JLabel();
         Icono_Vendedor = new javax.swing.JLabel();
         Icono_Factura = new javax.swing.JLabel();
@@ -226,6 +237,7 @@ public class Loggin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         Label_Incorrecto = new javax.swing.JLabel();
         Contra = new javax.swing.JPasswordField();
+        boton_Salida = new javax.swing.JButton();
         Panel_Selec_Tienda = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
@@ -266,48 +278,69 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Vendedorsitos.add(jLabel16);
         jLabel16.setBounds(40, 200, 130, 25);
 
-        jTextField5.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setText("jTextField5");
-        Panel_Vendedorsitos.add(jTextField5);
-        jTextField5.setBounds(40, 230, 260, 30);
+        tf_nombreVendedor.setBackground(new java.awt.Color(102, 102, 102));
+        tf_nombreVendedor.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Vendedorsitos.add(tf_nombreVendedor);
+        tf_nombreVendedor.setBounds(40, 230, 260, 30);
 
-        jTextField6.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setText("jTextField5");
-        Panel_Vendedorsitos.add(jTextField6);
-        jTextField6.setBounds(40, 150, 260, 30);
+        tf_idVendedor.setBackground(new java.awt.Color(102, 102, 102));
+        tf_idVendedor.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Vendedorsitos.add(tf_idVendedor);
+        tf_idVendedor.setBounds(40, 150, 260, 30);
 
-        jButton5.setBackground(new java.awt.Color(204, 204, 204));
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setText("Modificar");
-        Panel_Vendedorsitos.add(jButton5);
-        jButton5.setBounds(110, 380, 120, 40);
+        btn_updateVendedor.setBackground(new java.awt.Color(204, 204, 204));
+        btn_updateVendedor.setForeground(new java.awt.Color(0, 0, 0));
+        btn_updateVendedor.setText("Modificar");
+        btn_updateVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_updateVendedorMouseClicked(evt);
+            }
+        });
+        Panel_Vendedorsitos.add(btn_updateVendedor);
+        btn_updateVendedor.setBounds(110, 380, 120, 40);
 
-        jButton6.setBackground(new java.awt.Color(204, 204, 204));
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setText("Eliminar");
-        Panel_Vendedorsitos.add(jButton6);
-        jButton6.setBounds(110, 450, 120, 40);
+        btn_deleteVendedor.setBackground(new java.awt.Color(204, 204, 204));
+        btn_deleteVendedor.setForeground(new java.awt.Color(0, 0, 0));
+        btn_deleteVendedor.setText("Eliminar");
+        btn_deleteVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_deleteVendedorMouseClicked(evt);
+            }
+        });
+        Panel_Vendedorsitos.add(btn_deleteVendedor);
+        btn_deleteVendedor.setBounds(110, 450, 120, 40);
 
-        jButton7.setBackground(new java.awt.Color(204, 204, 204));
-        jButton7.setForeground(new java.awt.Color(0, 0, 0));
-        jButton7.setText("Añadir");
-        Panel_Vendedorsitos.add(jButton7);
-        jButton7.setBounds(110, 310, 120, 40);
+        btn_createVendedor.setBackground(new java.awt.Color(204, 204, 204));
+        btn_createVendedor.setForeground(new java.awt.Color(0, 0, 0));
+        btn_createVendedor.setText("Añadir");
+        btn_createVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_createVendedorMouseClicked(evt);
+            }
+        });
+        Panel_Vendedorsitos.add(btn_createVendedor);
+        btn_createVendedor.setBounds(110, 310, 120, 40);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_Vendedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id Vendedor", "Nombre Vendedor"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(table_Vendedores);
 
         Panel_Vendedorsitos.add(jScrollPane2);
         jScrollPane2.setBounds(340, 100, 680, 440);
@@ -410,10 +443,10 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Tiendita.add(jLabel26);
         jLabel26.setBounds(110, 200, 100, 30);
 
-        jTextField14.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField14.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Tiendita.add(jTextField14);
-        jTextField14.setBounds(40, 70, 200, 30);
+        tf_idTienda.setBackground(new java.awt.Color(102, 102, 102));
+        tf_idTienda.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Tiendita.add(tf_idTienda);
+        tf_idTienda.setBounds(40, 70, 200, 30);
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(137, 250, 230));
@@ -421,10 +454,10 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Tiendita.add(jLabel27);
         jLabel27.setBounds(130, 40, 100, 30);
 
-        jTextField15.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField15.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Tiendita.add(jTextField15);
-        jTextField15.setBounds(40, 150, 200, 30);
+        tf_nombreTienda.setBackground(new java.awt.Color(102, 102, 102));
+        tf_nombreTienda.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Tiendita.add(tf_nombreTienda);
+        tf_nombreTienda.setBounds(40, 150, 200, 30);
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(137, 250, 230));
@@ -432,14 +465,14 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Tiendita.add(jLabel28);
         jLabel28.setBounds(110, 120, 100, 30);
 
-        jTextField16.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField16.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Tiendita.add(jTextField16);
-        jTextField16.setBounds(40, 230, 200, 30);
+        tf_horarioTienda.setBackground(new java.awt.Color(102, 102, 102));
+        tf_horarioTienda.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Tiendita.add(tf_horarioTienda);
+        tf_horarioTienda.setBounds(40, 230, 200, 30);
 
-        jTable5.setBackground(new java.awt.Color(153, 153, 153));
-        jTable5.setForeground(new java.awt.Color(0, 0, 0));
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        table_Tiendas.setBackground(new java.awt.Color(153, 153, 153));
+        table_Tiendas.setForeground(new java.awt.Color(0, 0, 0));
+        table_Tiendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -483,42 +516,52 @@ public class Loggin extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id Tienda", "Nombre Tienda", "Horario", "Ubicacion"
             }
         ));
-        jTable5.setGridColor(new java.awt.Color(153, 153, 153));
-        jTable5.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jTable5.setShowGrid(false);
-        jScrollPane5.setViewportView(jTable5);
+        table_Tiendas.setGridColor(new java.awt.Color(153, 153, 153));
+        table_Tiendas.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        table_Tiendas.setShowGrid(false);
+        jScrollPane5.setViewportView(table_Tiendas);
 
         Panel_Tiendita.add(jScrollPane5);
         jScrollPane5.setBounds(260, 90, 770, 470);
 
-        jToggleButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jToggleButton1.setText("Modificar");
-        Panel_Tiendita.add(jToggleButton1);
-        jToggleButton1.setBounds(60, 450, 150, 40);
-
-        jToggleButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jToggleButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jToggleButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jToggleButton2.setText("Eliminar");
-        Panel_Tiendita.add(jToggleButton2);
-        jToggleButton2.setBounds(60, 520, 150, 40);
-
-        jToggleButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jToggleButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jToggleButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jToggleButton3.setText("Añadir");
-        jToggleButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_modificarTienda.setBackground(new java.awt.Color(204, 204, 204));
+        btn_modificarTienda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_modificarTienda.setForeground(new java.awt.Color(0, 0, 0));
+        btn_modificarTienda.setText("Modificar");
+        btn_modificarTienda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton3MouseClicked(evt);
+                btn_modificarTiendaMouseClicked(evt);
             }
         });
-        Panel_Tiendita.add(jToggleButton3);
-        jToggleButton3.setBounds(60, 380, 150, 40);
+        Panel_Tiendita.add(btn_modificarTienda);
+        btn_modificarTienda.setBounds(60, 450, 150, 40);
+
+        btn_eliminarTienda.setBackground(new java.awt.Color(204, 204, 204));
+        btn_eliminarTienda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_eliminarTienda.setForeground(new java.awt.Color(0, 0, 0));
+        btn_eliminarTienda.setText("Eliminar");
+        btn_eliminarTienda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_eliminarTiendaMouseClicked(evt);
+            }
+        });
+        Panel_Tiendita.add(btn_eliminarTienda);
+        btn_eliminarTienda.setBounds(60, 520, 150, 40);
+
+        btn_crearTienda.setBackground(new java.awt.Color(204, 204, 204));
+        btn_crearTienda.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_crearTienda.setForeground(new java.awt.Color(0, 0, 0));
+        btn_crearTienda.setText("Añadir");
+        btn_crearTienda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_crearTiendaMouseClicked(evt);
+            }
+        });
+        Panel_Tiendita.add(btn_crearTienda);
+        btn_crearTienda.setBounds(60, 380, 150, 40);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(137, 250, 230));
@@ -526,10 +569,10 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Tiendita.add(jLabel1);
         jLabel1.setBounds(550, 10, 180, 64);
 
-        jTextField17.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField17.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Tiendita.add(jTextField17);
-        jTextField17.setBounds(40, 310, 200, 30);
+        tf_ubicacionTienda.setBackground(new java.awt.Color(102, 102, 102));
+        tf_ubicacionTienda.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Tiendita.add(tf_ubicacionTienda);
+        tf_ubicacionTienda.setBounds(40, 310, 200, 30);
 
         jLabel50.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(137, 250, 230));
@@ -593,7 +636,7 @@ public class Loggin extends javax.swing.JFrame {
         jButton11.setForeground(new java.awt.Color(0, 0, 0));
         jButton11.setText("->");
         jPanel3.add(jButton11);
-        jButton11.setBounds(480, 230, 50, 31);
+        jButton11.setBounds(480, 230, 50, 27);
 
         jTextField18.setBackground(new java.awt.Color(102, 102, 102));
         jTextField18.setForeground(new java.awt.Color(255, 255, 255));
@@ -754,19 +797,19 @@ public class Loggin extends javax.swing.JFrame {
         jToggleButton4.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton4.setText("Agregar");
         Panel_Factura.add(jToggleButton4);
-        jToggleButton4.setBounds(20, 520, 76, 27);
+        jToggleButton4.setBounds(20, 520, 73, 23);
 
         jToggleButton5.setBackground(new java.awt.Color(204, 204, 204));
         jToggleButton5.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton5.setText("Eliminar");
         Panel_Factura.add(jToggleButton5);
-        jToggleButton5.setBounds(20, 560, 77, 27);
+        jToggleButton5.setBounds(20, 560, 71, 23);
 
         jToggleButton6.setBackground(new java.awt.Color(204, 204, 204));
         jToggleButton6.setForeground(new java.awt.Color(0, 0, 0));
         jToggleButton6.setText("Modificar");
         Panel_Factura.add(jToggleButton6);
-        jToggleButton6.setBounds(150, 540, 85, 27);
+        jToggleButton6.setBounds(150, 540, 80, 23);
 
         Menu_Admin.add(Panel_Factura);
         Panel_Factura.setBounds(1230, 0, 1080, 610);
@@ -839,89 +882,116 @@ public class Loggin extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(137, 250, 230));
         jLabel9.setText("UPC");
         Panel_Productos.add(jLabel9);
-        jLabel9.setBounds(70, 40, 37, 20);
+        jLabel9.setBounds(70, 50, 37, 20);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(137, 250, 230));
         jLabel10.setText("Nombre");
         Panel_Productos.add(jLabel10);
-        jLabel10.setBounds(70, 110, 80, 20);
+        jLabel10.setBounds(70, 100, 80, 20);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(137, 250, 230));
         jLabel11.setText("Tamaño");
         Panel_Productos.add(jLabel11);
-        jLabel11.setBounds(70, 180, 80, 20);
+        jLabel11.setBounds(70, 150, 80, 20);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(137, 250, 230));
         jLabel12.setText("Embalaje");
         Panel_Productos.add(jLabel12);
-        jLabel12.setBounds(70, 320, 80, 30);
+        jLabel12.setBounds(70, 200, 80, 30);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(137, 250, 230));
         jLabel13.setText("Marca");
         Panel_Productos.add(jLabel13);
-        jLabel13.setBounds(70, 250, 80, 20);
+        jLabel13.setBounds(70, 260, 80, 20);
 
-        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Productos.add(jTextField1);
-        jTextField1.setBounds(70, 270, 220, 30);
+        tf_embalajeProducto.setBackground(new java.awt.Color(102, 102, 102));
+        tf_embalajeProducto.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Productos.add(tf_embalajeProducto);
+        tf_embalajeProducto.setBounds(70, 230, 220, 30);
 
-        jTextField2.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Productos.add(jTextField2);
-        jTextField2.setBounds(70, 60, 220, 30);
+        tf_UPC.setBackground(new java.awt.Color(102, 102, 102));
+        tf_UPC.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Productos.add(tf_UPC);
+        tf_UPC.setBounds(70, 70, 220, 30);
 
-        jTextField3.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Productos.add(jTextField3);
-        jTextField3.setBounds(70, 130, 220, 30);
+        tf_nombreProducto.setBackground(new java.awt.Color(102, 102, 102));
+        tf_nombreProducto.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Productos.add(tf_nombreProducto);
+        tf_nombreProducto.setBounds(70, 120, 220, 30);
 
-        jTextField4.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        Panel_Productos.add(jTextField4);
-        jTextField4.setBounds(70, 200, 220, 30);
+        tf_tamanoProducto.setBackground(new java.awt.Color(102, 102, 102));
+        tf_tamanoProducto.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Productos.add(tf_tamanoProducto);
+        tf_tamanoProducto.setBounds(70, 170, 220, 30);
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Eliminar");
-        Panel_Productos.add(jButton2);
-        jButton2.setBounds(110, 510, 170, 40);
+        btn_deleteProducto.setBackground(new java.awt.Color(204, 204, 204));
+        btn_deleteProducto.setForeground(new java.awt.Color(0, 0, 0));
+        btn_deleteProducto.setText("Eliminar");
+        btn_deleteProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_deleteProductoMouseClicked(evt);
+            }
+        });
+        Panel_Productos.add(btn_deleteProducto);
+        btn_deleteProducto.setBounds(110, 510, 170, 40);
 
-        jCheckBox1.setText("Si");
-        Panel_Productos.add(jCheckBox1);
-        jCheckBox1.setBounds(140, 320, 170, 30);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_Productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "UPC", "Nombre Producto", "Tamaño", "Embalaje", "Marca", "Tipo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_Productos);
 
         Panel_Productos.add(jScrollPane1);
         jScrollPane1.setBounds(350, 100, 670, 450);
 
-        jButton3.setBackground(new java.awt.Color(204, 204, 204));
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("Agregar");
-        Panel_Productos.add(jButton3);
-        jButton3.setBounds(110, 390, 170, 40);
+        btn_createProducto.setBackground(new java.awt.Color(204, 204, 204));
+        btn_createProducto.setForeground(new java.awt.Color(0, 0, 0));
+        btn_createProducto.setText("Agregar");
+        btn_createProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_createProductoMouseClicked(evt);
+            }
+        });
+        Panel_Productos.add(btn_createProducto);
+        btn_createProducto.setBounds(110, 390, 170, 40);
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Editar");
-        Panel_Productos.add(jButton4);
-        jButton4.setBounds(110, 450, 170, 40);
+        btn_updateProducto.setBackground(new java.awt.Color(204, 204, 204));
+        btn_updateProducto.setForeground(new java.awt.Color(0, 0, 0));
+        btn_updateProducto.setText("Editar");
+        btn_updateProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_updateProductoMouseClicked(evt);
+            }
+        });
+        Panel_Productos.add(btn_updateProducto);
+        btn_updateProducto.setBounds(110, 450, 170, 40);
+
+        tf_marcaProducto.setBackground(new java.awt.Color(102, 102, 102));
+        tf_marcaProducto.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Productos.add(tf_marcaProducto);
+        tf_marcaProducto.setBounds(70, 280, 220, 30);
+
+        jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(137, 250, 230));
+        jLabel73.setText("Tipo Producto");
+        Panel_Productos.add(jLabel73);
+        jLabel73.setBounds(70, 310, 120, 30);
+
+        tf_tipoProducto.setBackground(new java.awt.Color(102, 102, 102));
+        tf_tipoProducto.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Productos.add(tf_tipoProducto);
+        tf_tipoProducto.setBounds(70, 340, 220, 30);
 
         Menu_Admin.add(Panel_Productos);
         Panel_Productos.setBounds(1230, 0, 1080, 610);
@@ -955,54 +1025,66 @@ public class Loggin extends javax.swing.JFrame {
         Panel_Cliente.add(jLabel25);
         jLabel25.setBounds(50, 50, 60, 30);
 
-        jTextField11.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField11.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField11.setText("jTextField11");
-        Panel_Cliente.add(jTextField11);
-        jTextField11.setBounds(50, 80, 210, 30);
+        tf_idCliente.setBackground(new java.awt.Color(102, 102, 102));
+        tf_idCliente.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Cliente.add(tf_idCliente);
+        tf_idCliente.setBounds(50, 80, 210, 30);
 
-        jTextField12.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField12.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField12.setText("jTextField12");
-        Panel_Cliente.add(jTextField12);
-        jTextField12.setBounds(50, 160, 210, 30);
+        tf_nombreCliente.setBackground(new java.awt.Color(102, 102, 102));
+        tf_nombreCliente.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Cliente.add(tf_nombreCliente);
+        tf_nombreCliente.setBounds(50, 160, 210, 30);
 
-        jTextField13.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField13.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField13.setText("jTextField13");
-        Panel_Cliente.add(jTextField13);
-        jTextField13.setBounds(50, 240, 210, 30);
+        tf_correoCliente.setBackground(new java.awt.Color(102, 102, 102));
+        tf_correoCliente.setForeground(new java.awt.Color(255, 255, 255));
+        Panel_Cliente.add(tf_correoCliente);
+        tf_correoCliente.setBounds(50, 240, 210, 30);
 
-        jButton8.setBackground(new java.awt.Color(204, 204, 204));
-        jButton8.setForeground(new java.awt.Color(0, 0, 0));
-        jButton8.setText("Eliminar");
-        Panel_Cliente.add(jButton8);
-        jButton8.setBounds(60, 450, 160, 40);
+        btn_deleteCliente.setBackground(new java.awt.Color(204, 204, 204));
+        btn_deleteCliente.setForeground(new java.awt.Color(0, 0, 0));
+        btn_deleteCliente.setText("Eliminar");
+        btn_deleteCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_deleteClienteMouseClicked(evt);
+            }
+        });
+        Panel_Cliente.add(btn_deleteCliente);
+        btn_deleteCliente.setBounds(60, 450, 160, 40);
 
-        jButton9.setBackground(new java.awt.Color(204, 204, 204));
-        jButton9.setForeground(new java.awt.Color(0, 0, 0));
-        jButton9.setText("Añadir");
-        Panel_Cliente.add(jButton9);
-        jButton9.setBounds(60, 310, 160, 40);
+        btn_createCliente.setBackground(new java.awt.Color(204, 204, 204));
+        btn_createCliente.setForeground(new java.awt.Color(0, 0, 0));
+        btn_createCliente.setText("Añadir");
+        btn_createCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_createClienteMouseClicked(evt);
+            }
+        });
+        Panel_Cliente.add(btn_createCliente);
+        btn_createCliente.setBounds(60, 310, 160, 40);
 
-        jButton10.setBackground(new java.awt.Color(204, 204, 204));
-        jButton10.setForeground(new java.awt.Color(0, 0, 0));
-        jButton10.setText("Modificar");
-        Panel_Cliente.add(jButton10);
-        jButton10.setBounds(60, 380, 160, 40);
+        btn_updateCliente.setBackground(new java.awt.Color(204, 204, 204));
+        btn_updateCliente.setForeground(new java.awt.Color(0, 0, 0));
+        btn_updateCliente.setText("Modificar");
+        btn_updateCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_updateClienteMouseClicked(evt);
+            }
+        });
+        Panel_Cliente.add(btn_updateCliente);
+        btn_updateCliente.setBounds(60, 380, 160, 40);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        table_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Cliente", "Nombre Cliente", "Correo Cliente"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(table_Clientes);
 
         Panel_Cliente.add(jScrollPane4);
         jScrollPane4.setBounds(330, 90, 670, 450);
@@ -1029,10 +1111,10 @@ public class Loggin extends javax.swing.JFrame {
 
         Panel_Menu_Izquierda.setBackground(new java.awt.Color(67, 122, 227,170));
 
-        Tienda_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Tienda.png"))); // NOI18N
-        Tienda_Icono.addMouseListener(new java.awt.event.MouseAdapter() {
+        Icono_Tienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Tienda.png"))); // NOI18N
+        Icono_Tienda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tienda_IconoMouseClicked(evt);
+                Icono_TiendaMouseClicked(evt);
             }
         });
 
@@ -1092,14 +1174,14 @@ public class Loggin extends javax.swing.JFrame {
                     .addComponent(Icono_Cliente)
                     .addComponent(Icono_Factura)
                     .addComponent(Icono_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Tienda_Icono))
+                    .addComponent(Icono_Tienda))
                 .addContainerGap())
         );
         Panel_Menu_IzquierdaLayout.setVerticalGroup(
             Panel_Menu_IzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Panel_Menu_IzquierdaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Tienda_Icono)
+                .addComponent(Icono_Tienda)
                 .addGap(18, 18, 18)
                 .addComponent(Icono_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1321,7 +1403,7 @@ public class Loggin extends javax.swing.JFrame {
         jPanel2.add(jScrollPane7);
         jScrollPane7.setBounds(20, 150, 1110, 340);
         jPanel2.add(jSpinner1);
-        jSpinner1.setBounds(150, 110, 68, 26);
+        jSpinner1.setBounds(150, 110, 64, 22);
 
         Comprar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Comprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/verificar (3).png"))); // NOI18N
@@ -1458,6 +1540,19 @@ public class Loggin extends javax.swing.JFrame {
         panel_ingreso.add(Contra);
         Contra.setBounds(60, 430, 320, 40);
 
+        boton_Salida.setBackground(new java.awt.Color(102, 102, 102));
+        boton_Salida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        boton_Salida.setForeground(new java.awt.Color(255, 0, 51));
+        boton_Salida.setText("SALIR");
+        boton_Salida.setName("boton_Salida"); // NOI18N
+        boton_Salida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_SalidaMouseClicked(evt);
+            }
+        });
+        panel_ingreso.add(boton_Salida);
+        boton_Salida.setBounds(290, 540, 100, 32);
+
         getContentPane().add(panel_ingreso);
         panel_ingreso.setBounds(380, 30, 420, 580);
 
@@ -1522,7 +1617,7 @@ public class Loggin extends javax.swing.JFrame {
     String variableprovisionalusuarioadmin="admin",variableprovisionalcontraadmin="admin",variableprovisionalusuariocustomer="paco",variableprovisionalcontrcustomer="123";
     private void Boton_IngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_IngresoMouseClicked
         if (Usuario.getText().equals(variableprovisionalusuarioadmin) && Contra.getText().equals(variableprovisionalcontraadmin)) {
-            ConexionDB c = new ConexionDB();
+            c = new ConexionDB();
             Fondo_Login.setVisible(false);
             Fondo4.setVisible(true);
             panel_ingreso.setVisible(false);
@@ -1538,17 +1633,61 @@ public class Loggin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Boton_IngresoMouseClicked
 
-    private void Tienda_IconoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tienda_IconoMouseClicked
+    private void Icono_TiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_TiendaMouseClicked
 
         Cambio_Menu CM= new Cambio_Menu(Panel_Productos,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor,Panel_Bitacora,Panel_Tienda,Panel_vendedores,false);
         CM.start();
+        tf_idTienda.setText("");
+        tf_nombreTienda.setText("");
+        tf_horarioTienda.setText("");
+        tf_ubicacionTienda.setText("");
+        listarTiendas(table_Tiendas);
+        ListSelectionModel selectionModel = table_Tiendas.getSelectionModel();
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int filaSeleccionada = table_Tiendas.getSelectedRow();
+                    if (filaSeleccionada >= 0) {
+                        tf_idTienda.setText(table_Tiendas.getValueAt(filaSeleccionada, 0).toString());
+                        tf_nombreTienda.setText(table_Tiendas.getValueAt(filaSeleccionada, 1).toString());
+                        tf_horarioTienda.setText(table_Tiendas.getValueAt(filaSeleccionada, 2).toString());
+                        tf_ubicacionTienda.setText(table_Tiendas.getValueAt(filaSeleccionada, 3).toString());
+                        ubicacionAntigua = table_Tiendas.getValueAt(filaSeleccionada, 3).toString();
+                    }
+                }
+            }
+        });
 
-    }//GEN-LAST:event_Tienda_IconoMouseClicked
+    }//GEN-LAST:event_Icono_TiendaMouseClicked
 
     private void Icono_ProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_ProductoMouseClicked
         if (Icono_Producto.isEnabled()) {
             Cambio_Menu CM= new Cambio_Menu(Panel_Productos,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor,Panel_Bitacora,Panel_Tienda,Panel_vendedores,true);
             CM.start();
+            tf_UPC.setText("");
+            tf_nombreProducto.setText("");
+            tf_tamanoProducto.setText("");
+            tf_marcaProducto.setText("");
+            tf_embalajeProducto.setText("");
+            tf_tipoProducto.setText("");
+            listarProductos(table_Productos);
+            ListSelectionModel selectionModel = table_Productos.getSelectionModel();
+            selectionModel.addListSelectionListener(new ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    if (!e.getValueIsAdjusting()) {
+                        int filaSeleccionada = table_Productos.getSelectedRow();
+                        if (filaSeleccionada >= 0) {
+                            tf_UPC.setText(table_Productos.getValueAt(filaSeleccionada, 0).toString());
+                            tf_nombreProducto.setText(table_Productos.getValueAt(filaSeleccionada, 1).toString());
+                            tf_tamanoProducto.setText(table_Productos.getValueAt(filaSeleccionada, 2).toString());
+                            tf_embalajeProducto.setText(table_Productos.getValueAt(filaSeleccionada, 3).toString());
+                            tf_marcaProducto.setText(table_Productos.getValueAt(filaSeleccionada, 4).toString());
+                            tf_tipoProducto.setText(table_Productos.getValueAt(filaSeleccionada, 5).toString());
+                            tipoAntiguo = table_Productos.getValueAt(filaSeleccionada, 5).toString();
+                        }
+                    }
+                }
+            });
         }
         
     }//GEN-LAST:event_Icono_ProductoMouseClicked
@@ -1557,6 +1696,21 @@ public class Loggin extends javax.swing.JFrame {
         if (Icono_Vendedor.isEnabled()) {
             Cambio_Menu CM= new Cambio_Menu(Panel_Productos,Panel_Factura,Panel_Cliente,Panel_Informes,Icono_Vendedor,Panel_Bitacora,Panel_vendedores,Panel_Tienda,false);
             CM.start();
+            tf_idVendedor.setText("");
+            tf_nombreVendedor.setText("");
+            listarVendedores(table_Vendedores);
+            ListSelectionModel selectionModel = table_Vendedores.getSelectionModel();
+            selectionModel.addListSelectionListener(new ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    if (!e.getValueIsAdjusting()) {
+                        int filaSeleccionada = table_Vendedores.getSelectedRow();
+                        if (filaSeleccionada >= 0) {
+                            tf_idVendedor.setText(table_Vendedores.getValueAt(filaSeleccionada, 0).toString());
+                            tf_nombreVendedor.setText(table_Vendedores.getValueAt(filaSeleccionada, 1).toString());
+                        }
+                    }
+                }
+            });
         }
         
     }//GEN-LAST:event_Icono_VendedorMouseClicked
@@ -1569,6 +1723,23 @@ public class Loggin extends javax.swing.JFrame {
     private void Icono_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Icono_ClienteMouseClicked
         Cambio_Menu CM= new Cambio_Menu(Panel_Cliente,Panel_Productos,Panel_Factura,Panel_Informes,Icono_Vendedor,Panel_Bitacora,Panel_Tienda,Panel_vendedores,true);
         CM.start();
+        tf_idCliente.setText("");
+        tf_nombreCliente.setText("");
+        tf_correoCliente.setText("");
+        listarClientes(table_Clientes);
+        ListSelectionModel selectionModel = table_Clientes.getSelectionModel();
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int filaSeleccionada = table_Clientes.getSelectedRow();
+                    if (filaSeleccionada >= 0) {
+                        tf_idCliente.setText(table_Clientes.getValueAt(filaSeleccionada, 0).toString());
+                        tf_nombreCliente.setText(table_Clientes.getValueAt(filaSeleccionada, 1).toString());
+                        tf_correoCliente.setText(table_Clientes.getValueAt(filaSeleccionada, 2).toString());
+                    }
+                }
+            }
+        });
     }//GEN-LAST:event_Icono_ClienteMouseClicked
 
     private void jLabel29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseClicked
@@ -1576,16 +1747,41 @@ public class Loggin extends javax.swing.JFrame {
         CM.start();
     }//GEN-LAST:event_jLabel29MouseClicked
 
-    private void jToggleButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton3MouseClicked
-        System.out.println("hola");
-    }//GEN-LAST:event_jToggleButton3MouseClicked
+    private void btn_crearTiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearTiendaMouseClicked
+        try{
+            String id = tf_idTienda.getText();
+            String nombre = tf_nombreTienda.getText();
+            String horario = tf_horarioTienda.getText();
+            String ubicacion = tf_ubicacionTienda.getText();
+            if(!id.isEmpty() && !nombre.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL createTienda(?,?,?,?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.setString(2, nombre);
+                llamador.setString(3, horario);
+                llamador.setString(4, ubicacion);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Tienda Creada Exitosamente");
+                listarTiendas(table_Tiendas);
+                tf_idTienda.setText("");
+                tf_nombreTienda.setText("");
+                tf_horarioTienda.setText("");
+                tf_ubicacionTienda.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_crearTiendaMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-            Fondo_Login.setVisible(false);
-            Fondo4.setVisible(true);
-            Cambio_Ecena_Menu cmm = new Cambio_Ecena_Menu(Fondo4,Fondo5 ,Menu_Customer);
-            cmm.start();
-            Panel_Selec_Tienda.setVisible(false);
+        Fondo_Login.setVisible(false);
+        Fondo4.setVisible(true);
+        Cambio_Ecena_Menu cmm = new Cambio_Ecena_Menu(Fondo4,Fondo5 ,Menu_Customer);
+        cmm.start();
+        Panel_Selec_Tienda.setVisible(false);
         
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -1618,6 +1814,403 @@ public class Loggin extends javax.swing.JFrame {
         panel_ingreso.setVisible(true);
     }//GEN-LAST:event_jLabel72MouseClicked
 
+    private void boton_SalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_SalidaMouseClicked
+        // TODO add your handling code here:
+        if(c != null){
+            c.desconectar();
+        }
+        System.exit(0);
+        
+    }//GEN-LAST:event_boton_SalidaMouseClicked
+
+    private void btn_createVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_createVendedorMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idVendedor.getText();
+            String nombre = tf_nombreVendedor.getText();
+            if(!id.isEmpty() && !nombre.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL createVendedor(?,?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.setString(2, nombre);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Vendedor Creado Exitosamente");
+                listarVendedores(table_Vendedores);
+                tf_idVendedor.setText("");
+                tf_nombreVendedor.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_createVendedorMouseClicked
+
+    private void btn_updateVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_updateVendedorMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idVendedor.getText();
+            String nombre = tf_nombreVendedor.getText();
+            if(!id.isEmpty() && !nombre.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL updateVendedor(?,?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.setString(2, nombre);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Vendedor Modificado Exitosamente");
+                listarVendedores(table_Vendedores);
+                tf_idVendedor.setText("");
+                tf_nombreVendedor.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_btn_updateVendedorMouseClicked
+
+    private void btn_deleteVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_deleteVendedorMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idVendedor.getText();
+            if(!id.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL deleteVendedor(?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Vendedor Eliminado Exitosamente");
+                listarVendedores(table_Vendedores);
+                tf_idVendedor.setText("");
+                tf_nombreVendedor.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Id de Vendedor no puede estar vacio");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_deleteVendedorMouseClicked
+
+    private void btn_modificarTiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_modificarTiendaMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idTienda.getText();
+            String nombre = tf_nombreTienda.getText();
+            String horario = tf_horarioTienda.getText();
+            String ubicacion = tf_ubicacionTienda.getText();
+            if(!id.isEmpty() && !nombre.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL updateTienda(?,?,?,?,?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.setString(2, nombre);
+                llamador.setString(3, horario);
+                llamador.setString(4, ubicacion);
+                llamador.setString(5, ubicacionAntigua);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Tienda Modificada Exitosamente");
+                listarTiendas(table_Tiendas);
+                tf_idTienda.setText("");
+                tf_nombreTienda.setText("");
+                tf_horarioTienda.setText("");
+                tf_ubicacionTienda.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_modificarTiendaMouseClicked
+
+    private void btn_eliminarTiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarTiendaMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idTienda.getText();
+            String nombre = tf_nombreTienda.getText();
+            String horario = tf_horarioTienda.getText();
+            String ubicacion = tf_ubicacionTienda.getText();
+            if(!id.isEmpty() && !nombre.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL deleteTienda(?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Tienda Eliminada Exitosamente");
+                listarTiendas(table_Tiendas);
+                tf_idTienda.setText("");
+                tf_nombreTienda.setText("");
+                tf_horarioTienda.setText("");
+                tf_ubicacionTienda.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_eliminarTiendaMouseClicked
+
+    private void btn_createClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_createClienteMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idCliente.getText();
+            String nombre = tf_nombreCliente.getText();
+            String correo = tf_correoCliente.getText();
+            if(!id.isEmpty() && !nombre.isEmpty() && !correo.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL createCliente(?,?,?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.setString(2, nombre);
+                llamador.setString(3, correo);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Cliente Creado Exitosamente");
+                listarClientes(table_Clientes);
+                tf_idCliente.setText("");
+                tf_nombreCliente.setText("");
+                tf_correoCliente.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_createClienteMouseClicked
+
+    private void btn_updateClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_updateClienteMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idCliente.getText();
+            String nombre = tf_nombreCliente.getText();
+            String correo = tf_correoCliente.getText();
+            if(!id.isEmpty() && !nombre.isEmpty() && !correo.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL updateCliente(?,?,?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.setString(2, nombre);
+                llamador.setString(3, correo);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Cliente Modificado Exitosamente");
+                listarClientes(table_Clientes);
+                tf_idCliente.setText("");
+                tf_nombreCliente.setText("");
+                tf_correoCliente.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_updateClienteMouseClicked
+
+    private void btn_deleteClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_deleteClienteMouseClicked
+        // TODO add your handling code here:
+        try{
+            String id = tf_idCliente.getText();
+            if(!id.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL deleteCliente(?)");
+                llamador.setInt(1,Integer.parseInt(id));
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Cliente Eliminado Exitosamente");
+                listarClientes(table_Clientes);
+                tf_idCliente.setText("");
+                tf_nombreCliente.setText("");
+                tf_correoCliente.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Id de Cliente no puede estar vacio");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_deleteClienteMouseClicked
+
+    private void btn_createProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_createProductoMouseClicked
+        // TODO add your handling code here:
+        try{
+            String upc = tf_UPC.getText();
+            String nombre = tf_nombreProducto.getText();
+            String tamano = tf_tamanoProducto.getText();
+            String embalaje = tf_embalajeProducto.getText();
+            String marca = tf_marcaProducto.getText();
+            String tipo = tf_tipoProducto.getText();
+            if(!upc.isEmpty() && !nombre.isEmpty() && !tamano.isEmpty() && !embalaje.isEmpty() && !marca.isEmpty() && !tipo.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL createProducto(?,?,?,?,?,?)");
+                llamador.setInt(1,Integer.parseInt(upc));
+                llamador.setString(2, nombre);
+                llamador.setString(3, tamano);
+                llamador.setString(4, embalaje);
+                llamador.setString(5, marca);
+                llamador.setString(6, tipo);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Producto Creado Exitosamente");
+                listarProductos(table_Productos);
+                tf_UPC.setText("");
+                tf_nombreProducto.setText("");
+                tf_tamanoProducto.setText("");
+                tf_embalajeProducto.setText("");
+                tf_marcaProducto.setText("");
+                tf_tipoProducto.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_createProductoMouseClicked
+
+    private void btn_updateProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_updateProductoMouseClicked
+        // TODO add your handling code here:
+        try{
+            String upc = tf_UPC.getText();
+            String nombre = tf_nombreProducto.getText();
+            String tamano = tf_tamanoProducto.getText();
+            String embalaje = tf_embalajeProducto.getText();
+            String marca = tf_marcaProducto.getText();
+            String tipo = tf_tipoProducto.getText();
+            if(!upc.isEmpty() && !nombre.isEmpty() && !tamano.isEmpty() && !embalaje.isEmpty() && !marca.isEmpty() && !tipo.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL updateProducto(?,?,?,?,?,?,?)");
+                llamador.setInt(1,Integer.parseInt(upc));
+                llamador.setString(2, nombre);
+                llamador.setString(3, tamano);
+                llamador.setString(4, embalaje);
+                llamador.setString(5, marca);
+                llamador.setString(6, tipo);
+                llamador.setString(7, tipoAntiguo);
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Producto Modificado Exitosamente");
+                listarProductos(table_Productos);
+                tf_UPC.setText("");
+                tf_nombreProducto.setText("");
+                tf_tamanoProducto.setText("");
+                tf_embalajeProducto.setText("");
+                tf_marcaProducto.setText("");
+                tf_tipoProducto.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_updateProductoMouseClicked
+
+    private void btn_deleteProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_deleteProductoMouseClicked
+        // TODO add your handling code here:
+        try{
+            String upc = tf_UPC.getText();
+            if(!upc.isEmpty()){
+                CallableStatement llamador = c.conexion.prepareCall("CALL deleteProducto(?)");
+                llamador.setInt(1,Integer.parseInt(upc));
+                llamador.execute();
+                JOptionPane.showMessageDialog(null, "Producto Eliminado Exitosamente");
+                listarProductos(table_Productos);
+                tf_UPC.setText("");
+                tf_nombreProducto.setText("");
+                tf_tamanoProducto.setText("");
+                tf_embalajeProducto.setText("");
+                tf_marcaProducto.setText("");
+                tf_tipoProducto.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No deben de haber campos vacios");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valores no cumplen las restricciones");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btn_deleteProductoMouseClicked
+    private void listarVendedores(JTable tablaVendedores){
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select * from vendedor");
+            DefaultTableModel modeloVendedor = (DefaultTableModel)tablaVendedores.getModel();
+            modeloVendedor.setRowCount(0);
+            while(rs.next()){
+                int id = rs.getInt("idVendedor");
+                String nombre = rs.getString("nombreVendedor");
+                modeloVendedor.addRow(new Object[]{id, nombre});
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }       
+    }
+    private void listarClientes(JTable tablaClientes){
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select * from cliente");
+            DefaultTableModel modeloVendedor = (DefaultTableModel)tablaClientes.getModel();
+            modeloVendedor.setRowCount(0);
+            while(rs.next()){
+                int id = rs.getInt("idCliente");
+                String nombre = rs.getString("nombreCliente");
+                String correo = rs.getString("correo");
+                modeloVendedor.addRow(new Object[]{id, nombre, correo});
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }       
+    }
+    private void listarProductos(JTable tablaProductos){
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select * from producto");
+            DefaultTableModel modeloTienda = (DefaultTableModel)tablaProductos.getModel();
+            modeloTienda.setRowCount(0);
+            while(rs.next()){
+                int upc = rs.getInt("UPC");
+                String nombre = rs.getString("nombreProducto");
+                String tamano = rs.getString("tamanoProducto");
+                String embalaje = rs.getString("embalaje");
+                String marca = rs.getString("marca");
+                Statement st2 = c.conexion.createStatement();
+                ResultSet rs2 = st.executeQuery("Select tipoProducto from tipo_producto where UPC = " + upc);
+                while(rs2.next()){
+                    String tipo = rs2.getString("tipoProducto");
+                    modeloTienda.addRow(new Object[]{upc, nombre,tamano,embalaje,marca,tipo});
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }       
+    }
+    private void listarTiendas(JTable tablaTiendas){
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conexion.createStatement();
+            rs = st.executeQuery("Select * from tienda");
+            DefaultTableModel modeloTienda = (DefaultTableModel)tablaTiendas.getModel();
+            modeloTienda.setRowCount(0);
+            while(rs.next()){
+                int id = rs.getInt("idTienda");
+                String nombre = rs.getString("nombreTienda");
+                String horario = rs.getString("horarioTienda");
+                
+                Statement st2 = c.conexion.createStatement();
+                ResultSet rs2 = st.executeQuery("Select ubicacionTienda from ubicacion_tienda where idTienda = " + id);
+                while(rs2.next()){
+                    String ubicacion = rs2.getString("ubicacionTienda");
+                    modeloTienda.addRow(new Object[]{id, nombre,horario,ubicacion});
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }       
+    }
     /**
      * @param args the command line arguments
      */
@@ -1667,6 +2260,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel Icono_Cliente;
     private javax.swing.JLabel Icono_Factura;
     private javax.swing.JLabel Icono_Producto;
+    private javax.swing.JLabel Icono_Tienda;
     private javax.swing.JLabel Icono_Vendedor;
     private javax.swing.JLabel Label_IVA;
     private javax.swing.JLabel Label_Importe;
@@ -1690,22 +2284,24 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Vendedorsitos;
     private javax.swing.JPanel Panel_menu_abajo;
     private javax.swing.JTabbedPane Panel_vendedores;
-    private javax.swing.JLabel Tienda_Icono;
     private javax.swing.JTextField Usuario;
+    private javax.swing.JButton boton_Salida;
+    private javax.swing.JToggleButton btn_crearTienda;
+    private javax.swing.JButton btn_createCliente;
+    private javax.swing.JButton btn_createProducto;
+    private javax.swing.JButton btn_createVendedor;
+    private javax.swing.JButton btn_deleteCliente;
+    private javax.swing.JButton btn_deleteProducto;
+    private javax.swing.JButton btn_deleteVendedor;
+    private javax.swing.JToggleButton btn_eliminarTienda;
+    private javax.swing.JToggleButton btn_modificarTienda;
+    private javax.swing.JButton btn_updateCliente;
+    private javax.swing.JButton btn_updateProducto;
+    private javax.swing.JButton btn_updateVendedor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -1784,6 +2380,7 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1804,47 +2401,46 @@ public class Loggin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable10;
     private javax.swing.JTable jTable11;
     private javax.swing.JTable jTable12;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
     private javax.swing.JTable jTable8;
     private javax.swing.JTable jTable9;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JPanel panel_ingreso;
+    private javax.swing.JTable table_Clientes;
+    private javax.swing.JTable table_Productos;
+    private javax.swing.JTable table_Tiendas;
+    private javax.swing.JTable table_Vendedores;
+    private javax.swing.JTextField tf_UPC;
+    private javax.swing.JTextField tf_correoCliente;
+    private javax.swing.JTextField tf_embalajeProducto;
+    private javax.swing.JTextField tf_horarioTienda;
+    private javax.swing.JTextField tf_idCliente;
+    private javax.swing.JTextField tf_idTienda;
+    private javax.swing.JTextField tf_idVendedor;
+    private javax.swing.JTextField tf_marcaProducto;
+    private javax.swing.JTextField tf_nombreCliente;
+    private javax.swing.JTextField tf_nombreProducto;
+    private javax.swing.JTextField tf_nombreTienda;
+    private javax.swing.JTextField tf_nombreVendedor;
+    private javax.swing.JTextField tf_tamanoProducto;
+    private javax.swing.JTextField tf_tipoProducto;
+    private javax.swing.JTextField tf_ubicacionTienda;
     // End of variables declaration//GEN-END:variables
 }

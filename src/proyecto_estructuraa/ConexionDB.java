@@ -4,9 +4,7 @@
  */
 package proyecto_estructuraa;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 /**
  *
  * @author diego
@@ -18,15 +16,16 @@ public class ConexionDB {
     private String dbName = "retailer";
     private String userName = "root";
     private String userPass = "Molina2609";
+
+        
     
     public ConexionDB(){
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://" + this.host + ":" + this.port + "/" + this.dbName;
+            Class.forName("org.mariadb.jdbc.Driver");
+            String url = "jdbc:mariadb://" + this.host +":" + this.port + "/" + this.dbName;
             conexion = DriverManager.getConnection(url, this.userName, this.userPass);
-            System.out.println("Conexion Exitosa");
         }catch (ClassNotFoundException | SQLException e){
-            System.out.println("Error, no se conecto");
+            e.printStackTrace();
         }
     }
     public void desconectar(){
