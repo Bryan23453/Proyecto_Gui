@@ -11,11 +11,11 @@ import java.sql.*;
  */
 public class ConexionDB {
     Connection conexion;
-    private String host = "127.0.0.1";
+    private String host = "retailerdb.c97ylrd8k5vq.us-east-1.rds.amazonaws.com";
     private String port = "3306";
     private String dbName = "retailer";
-    private String userName = "root";
-    private String userPass = "Molina2609";
+    private String userName = "admin";
+    private String userPass = "admin123";
 
         
     
