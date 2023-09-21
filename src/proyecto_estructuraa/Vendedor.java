@@ -17,6 +17,9 @@ public class Vendedor {
         this.nombre = nombre;
     }
 
+    public Vendedor() {
+    }
+
     public int getId() {
         return id;
     }

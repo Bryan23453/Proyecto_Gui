@@ -9,14 +9,18 @@ package proyecto_estructuraa;
  * @author bryan
  */
 public class Producto {
-    String upc,nombre,marca;
-    int tamano;
+    String nombre,marca,tamano,upc;
 
-    public Producto(String upc, String nombre, String marca, int tamano) {
+    public Producto(String upc, String nombre, String marca, String tamano) {
         this.upc = upc;
         this.nombre = nombre;
         this.marca = marca;
         this.tamano = tamano;
+    }
+
+    public Producto(String upc,String nombre) {
+        this.nombre = nombre;
+        this.upc = upc;
     }
 
     public String getUpc() {
@@ -26,6 +30,11 @@ public class Producto {
     public void setUpc(String upc) {
         this.upc = upc;
     }
+    
+
+    
+
+    
 
     public String getNombre() {
         return nombre;
@@ -43,12 +52,14 @@ public class Producto {
         this.marca = marca;
     }
 
-    public int getTamano() {
+    public String getTamano() {
         return tamano;
     }
 
-    public void setTamano(int tamano) {
+    public void setTamano(String tamano) {
         this.tamano = tamano;
     }
+
+    
     
 }
